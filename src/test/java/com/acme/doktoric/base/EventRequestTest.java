@@ -16,9 +16,9 @@ public class EventRequestTest {
 	private EventRequest eventRequest;
 	private String exceptedUrl="http://port.hu/pls/fe/festival.festival_list?i_city_id=-1&i_county_id=-1&i_cntry_id=44&i_topic_id=19&i_selected_date=19&i_view_date=2013-04-30-2013-04-01&i_selected_date=2013-04-01-2013-04-30";
 
-	@Before 
+	@Before
 	public void setUp() {
-		EventRequest eventRequest = RequestBuilder.create()
+		eventRequest = RequestBuilder.create()
 				.withBaseUrl("http://port.hu/pls/")
 				.withCategory(Category.FESTIVAL)
 				.withFromDate("2013-04-01")
