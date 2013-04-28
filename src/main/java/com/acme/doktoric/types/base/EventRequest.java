@@ -27,7 +27,7 @@ public class EventRequest {
 	protected String countyId = "-1";
 	protected String topicId = "19";
 
-	public static Date StartDayOfMonth() {
+	private Date StartDayOfMonth() {
 
 		Date actual=null ;
 		SimpleDateFormat viewDateFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -43,7 +43,7 @@ public class EventRequest {
 
 	
 	
-	public static Date EndDayOfMonth() {
+	private Date EndDayOfMonth() {
 
 		Date actual=null ;
 		SimpleDateFormat viewDateFormat = new SimpleDateFormat("yyyy-mm-dd");
