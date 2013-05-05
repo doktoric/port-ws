@@ -12,6 +12,11 @@ import com.acme.doktoric.types.enums.EventCategory;
 public abstract class Event {
 	protected ToDate toDate;
 	protected FromDate fromDate;
+	protected EventName name;
+	protected EventPlace place;
+	protected EventUrl url;
+	protected EventDescription description;
+	protected EventCategory eventCategory;
 
 	public EventCategory getEventCategory() {
 		return eventCategory;
@@ -21,11 +26,7 @@ public abstract class Event {
 		this.eventCategory = eventCategory;
 	}
 
-	protected EventName name;
-	protected EventPlace place;
-	protected EventUrl url;
-	protected EventDescription description;
-	protected EventCategory eventCategory;
+	
 
 	public ToDate getToDate() {
 		return toDate;
