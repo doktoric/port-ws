@@ -3,12 +3,11 @@ package com.acme.doktoric.types.base;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import com.acme.doktoric.types.concrete.FromDate;
 import com.acme.doktoric.types.concrete.ToDate;
@@ -66,20 +65,30 @@ public class EventRequest {
 	public String getResponseUrl() throws IOException {
 		SimpleDateFormat viewDateFormat = new SimpleDateFormat("yyyy-mm-dd");
 		StringBuilder url = new StringBuilder();
-		url.append(baseUrl).append(category.getUrl()).append("i_city_id=")
-				.append(cityId).append("&").append("i_county_id=")
-				.append(countyId).append("&").append("i_cntry_id=")
-				.append(countryId).append("&").append("i_topic_id=")
-				.append(topicId).append("&").append("i_selected_date=")
-				.append(topicId).append("&").append("i_view_date=")
-				.append(viewDateFormat.format(startViewDate)).append("-")
-				.append(viewDateFormat.format(endViewDate)).append("&")
-				.append("i_selected_date=")
-				.append(viewDateFormat.format(fromDate.getDate())).append("-")
-				.append(viewDateFormat.format(toDate.getDate()));
+		url.append(baseUrl).append(category.getUrl())
+				.append("i_city_id=").append(cityId).append("&")
+				.append("i_county_id=").append(countyId).append("&")
+				.append("i_cntry_id=").append(countryId).append("&")
+				.append("i_topic_id=").append(topicId).append("&")
+				.append("i_view_date=").append(viewDateFormat.format(startViewDate))
+									   .append("-")
+									   .append(viewDateFormat.format(endViewDate)).append("&")
+				.append("i_selected_date=").append(viewDateFormat.format(fromDate.getDate()))
+									   .append("-")
+									   .append(viewDateFormat.format(toDate.getDate()));
 		return url.toString();
 	}
 
+	public Elements getResponseBody(String url) throws IOException{
+		Document doc = Jsoup.connect(url).get();
+		Elements boxDiv1 = doc.select(".main-container table:nth-child(3) tr.gray");
+		Elements boxDiv2 = doc.select(".main-container table:nth-child(3) tr.lightgray");
+		boxDiv1.addAll(boxDiv2);
+		return boxDiv1;
+		
+	}
+	
+	
 	public String getBaseUrl() {
 		return baseUrl;
 	}
