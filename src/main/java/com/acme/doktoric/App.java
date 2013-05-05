@@ -17,16 +17,14 @@ import com.acme.doktoric.types.enums.Category;
  */
 public class App {
 	public static void main(String[] args) throws IOException {
-		//parseMainPage();
-		//parseDatePage();
 		EventRequest eventRequest=RequestBuilder.create()
 				.withBaseUrl("http://port.hu/pls/")
 				.withCategory(Category.FESTIVAL)
 				.withFromDate("2013-04-01")
 				.withToDate("2013-04-30")
 				.build();
-		System.out.println(eventRequest.getResponseUrl());
-		
+		String url=eventRequest.getResponseUrl();
+		System.out.println(eventRequest.getResponseBody(url));
 				
 	}
 	
