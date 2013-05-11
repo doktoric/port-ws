@@ -3,15 +3,17 @@ package com.acme.doktoric.types.concrete;
 import java.text.ParseException;
 import java.util.Date;
 
+import org.joda.time.DateTime;
+
 import com.acme.doktoric.types.base.DateType;
 
 public class FromDate extends DateType {
 	
 	public FromDate(String date) throws ParseException {
-		this.date = simpleDateFormat.parse(date);
+		this.date =  simpleDateFormat.parseDateTime(date);
 	}
 
-	public FromDate(Date date) {
+	public FromDate(DateTime date) {
 		this.date = date;
 	}
 
@@ -25,7 +27,7 @@ public class FromDate extends DateType {
 		return fromDate;
 	}
 
-	public static final FromDate fromDate(Date date) {
+	public static final FromDate fromDate(DateTime date) {
 		return new FromDate(date);
 	}
 }

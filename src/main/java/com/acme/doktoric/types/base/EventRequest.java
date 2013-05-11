@@ -5,6 +5,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -17,8 +20,10 @@ public class EventRequest {
 
 	protected String baseUrl;
 	protected Category category;
-	protected Date startViewDate = EndDayOfMonth();
-	protected Date endViewDate = StartDayOfMonth();
+	protected DateTime startViewDate = EndDayOfMonth();
+	protected DateTime endViewDate = StartDayOfMonth();
+	DateTimeFormatter formatter = DateTimeFormat
+			.forPattern("YYYY-MM-dd");
 	protected ToDate toDate;
 	protected FromDate fromDate;
 	protected String cityId = "-1";
@@ -26,32 +31,25 @@ public class EventRequest {
 	protected String countyId = "-1";
 	protected String topicId = "19";
 
-	private Date StartDayOfMonth() {
+	private DateTime StartDayOfMonth() {
 
-		Date actual=null ;
-		SimpleDateFormat viewDateFormat = new SimpleDateFormat("yyyy-mm-dd");
-		try {
-			actual=viewDateFormat.parse("2013-04-01");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		DateTime actual = null;
+		DateTimeFormatter viewDateFormat = DateTimeFormat
+				.forPattern("YYYY-MM-dd");
+		actual = viewDateFormat.parseDateTime("2013-04-01");
+
 		System.out.println(actual.toString());
 		return actual;
 	}
 
-	
-	
-	private Date EndDayOfMonth() {
+	private DateTime EndDayOfMonth() {
 
-		Date actual=null ;
-		SimpleDateFormat viewDateFormat = new SimpleDateFormat("yyyy-mm-dd");
-		try {
-			actual=viewDateFormat.parse("2013-04-30");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		DateTime actual = null;
+		DateTimeFormatter viewDateFormat = DateTimeFormat
+				.forPattern("YYYY-MM-dd");
+		
+			actual = viewDateFormat.parseDateTime("2013-04-30");
+		
 		System.out.println(actual.toString());
 		return actual;
 	}
@@ -63,32 +61,33 @@ public class EventRequest {
 	}
 
 	public String getResponseUrl() throws IOException {
-		SimpleDateFormat viewDateFormat = new SimpleDateFormat("yyyy-mm-dd");
+	//	SimpleDateFormat viewDateFormat = new SimpleDateFormat("yyyy-mm-dd");
 		StringBuilder url = new StringBuilder();
 		url.append(baseUrl).append(category.getUrl())
 				.append("i_city_id=").append(cityId).append("&")
 				.append("i_county_id=").append(countyId).append("&")
 				.append("i_cntry_id=").append(countryId).append("&")
 				.append("i_topic_id=").append(topicId).append("&")
-				.append("i_view_date=").append(viewDateFormat.format(startViewDate))
+				.append("i_view_date=").append(formatter.print(startViewDate))
 									   .append("-")
-									   .append(viewDateFormat.format(endViewDate)).append("&")
-				.append("i_selected_date=").append(viewDateFormat.format(fromDate.getDate()))
+									   .append(formatter.print(endViewDate)).append("&")
+				.append("i_selected_date=").append(formatter.print(fromDate.getDate()))
 									   .append("-")
-									   .append(viewDateFormat.format(toDate.getDate()));
+									   .append(formatter.print(toDate.getDate()));
 		return url.toString();
 	}
 
-	public Elements getResponseBody(String url) throws IOException{
+	public Elements getResponseBody(String url) throws IOException {
 		Document doc = Jsoup.connect(url).get();
-		Elements boxDiv1 = doc.select(".main-container table:nth-child(3) tr.gray");
-		Elements boxDiv2 = doc.select(".main-container table:nth-child(3) tr.lightgray");
+		Elements boxDiv1 = doc
+				.select(".main-container table:nth-child(3) tr.gray");
+		Elements boxDiv2 = doc
+				.select(".main-container table:nth-child(3) tr.lightgray");
 		boxDiv1.addAll(boxDiv2);
 		return boxDiv1;
-		
+
 	}
-	
-	
+
 	public String getBaseUrl() {
 		return baseUrl;
 	}
@@ -105,19 +104,19 @@ public class EventRequest {
 		this.category = category;
 	}
 
-	public Date getStartViewDate() {
+	public DateTime getStartViewDate() {
 		return startViewDate;
 	}
 
-	public void setStartViewDate(Date startViewDate) {
+	public void setStartViewDate(DateTime startViewDate) {
 		this.startViewDate = startViewDate;
 	}
 
-	public Date getEndViewDate() {
+	public DateTime getEndViewDate() {
 		return endViewDate;
 	}
 
-	public void setEndViewDate(Date endViewDate) {
+	public void setEndViewDate(DateTime endViewDate) {
 		this.endViewDate = endViewDate;
 	}
 

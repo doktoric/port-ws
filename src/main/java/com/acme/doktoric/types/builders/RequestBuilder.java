@@ -6,6 +6,8 @@ import static com.acme.doktoric.types.concrete.ToDate.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.joda.time.DateTime;
+
 import com.acme.doktoric.types.base.EventRequest;
 
 import com.acme.doktoric.types.enums.Category;
@@ -23,7 +25,7 @@ public class RequestBuilder {
 		return this;
 	}
 
-	public RequestBuilder withToDate(Date toDate) {
+	public RequestBuilder withToDate(DateTime toDate) {
 		eventRequest.setToDate(toDate(toDate));
 		return this;
 	}
@@ -38,7 +40,7 @@ public class RequestBuilder {
 		return this;
 	}
 
-	public RequestBuilder withFromDate(Date fromDate) {
+	public RequestBuilder withFromDate(DateTime fromDate) {
 		eventRequest.setFromDate(fromDate(fromDate));
 		return this;
 	}

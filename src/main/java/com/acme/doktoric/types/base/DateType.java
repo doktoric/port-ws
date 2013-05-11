@@ -3,12 +3,16 @@ package com.acme.doktoric.types.base;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 public abstract class DateType {
 
-	protected Date date=new Date();
-	protected SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd"); 
+	protected DateTime  date=new DateTime();
+	protected DateTimeFormatter  simpleDateFormat = DateTimeFormat.forPattern("YYYY-MM-dd"); 
 
-	protected Date getDate() {
+	protected DateTime getDate() {
 		return date;
 	}
 
@@ -24,13 +28,12 @@ public abstract class DateType {
 
 
 	protected String getDateAsString(String dateFormat) {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
-		String dateAsString = getDateAsString(simpleDateFormat);
+		String dateAsString = getDateAsString(DateTimeFormat.forPattern(dateFormat));
 		return dateAsString;
 	}
 
-	protected String getDateAsString(SimpleDateFormat simpleDateFormat) {
-		String dateAsString = simpleDateFormat.format(date);
+	protected String getDateAsString(DateTimeFormatter simpleDateFormat) {
+		String dateAsString = simpleDateFormat.print(date);
 		return dateAsString;
 	}
 

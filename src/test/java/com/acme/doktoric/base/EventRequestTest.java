@@ -22,7 +22,7 @@ public class EventRequestTest {
 				.withBaseUrl("http://port.hu/pls/")
 				.withCategory(Category.FESTIVAL)
 				.withFromDate("2013-04-01")
-				.withToDate("2013-04-30")
+				.withToDate("2013-05-30")
 				.build();
 	}
 	
