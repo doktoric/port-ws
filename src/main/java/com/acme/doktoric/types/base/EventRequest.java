@@ -22,8 +22,7 @@ public class EventRequest {
 	protected Category category;
 	protected DateTime startViewDate = EndDayOfMonth();
 	protected DateTime endViewDate = StartDayOfMonth();
-	DateTimeFormatter formatter = DateTimeFormat
-			.forPattern("YYYY-MM-dd");
+	DateTimeFormatter formatter = DateTimeFormat.forPattern("YYYY-MM-dd");
 	protected ToDate toDate;
 	protected FromDate fromDate;
 	protected String cityId = "-1";
@@ -47,9 +46,9 @@ public class EventRequest {
 		DateTime actual = null;
 		DateTimeFormatter viewDateFormat = DateTimeFormat
 				.forPattern("YYYY-MM-dd");
-		
-			actual = viewDateFormat.parseDateTime("2013-04-30");
-		
+
+		actual = viewDateFormat.parseDateTime("2013-04-30");
+
 		System.out.println(actual.toString());
 		return actual;
 	}
@@ -61,19 +60,18 @@ public class EventRequest {
 	}
 
 	public String getResponseUrl() throws IOException {
-	//	SimpleDateFormat viewDateFormat = new SimpleDateFormat("yyyy-mm-dd");
+		// SimpleDateFormat viewDateFormat = new SimpleDateFormat("yyyy-mm-dd");
 		StringBuilder url = new StringBuilder();
-		url.append(baseUrl).append(category.getUrl())
-				.append("i_city_id=").append(cityId).append("&")
-				.append("i_county_id=").append(countyId).append("&")
-				.append("i_cntry_id=").append(countryId).append("&")
-				.append("i_topic_id=").append(topicId).append("&")
-				.append("i_view_date=").append(formatter.print(startViewDate))
-									   .append("-")
-									   .append(formatter.print(endViewDate)).append("&")
-				.append("i_selected_date=").append(formatter.print(fromDate.getDate()))
-									   .append("-")
-									   .append(formatter.print(toDate.getDate()));
+		url.append(baseUrl).append(category.getUrl()).append("i_city_id=")
+				.append(cityId).append("&").append("i_county_id=")
+				.append(countyId).append("&").append("i_cntry_id=")
+				.append(countryId).append("&").append("i_topic_id=")
+				.append(topicId).append("&").append("i_view_date=")
+				.append(formatter.print(startViewDate)).append("-")
+				.append(formatter.print(endViewDate)).append("&")
+				.append("i_selected_date=")
+				.append(formatter.print(fromDate.getDate())).append("-")
+				.append(formatter.print(toDate.getDate()));
 		return url.toString();
 	}
 
@@ -88,72 +86,20 @@ public class EventRequest {
 
 	}
 
-	public String getBaseUrl() {
-		return baseUrl;
-	}
-
 	public void setBaseUrl(String baseUrl) {
 		this.baseUrl = baseUrl;
-	}
-
-	public Category getCategory() {
-		return category;
 	}
 
 	public void setCategory(Category category) {
 		this.category = category;
 	}
 
-	public DateTime getStartViewDate() {
-		return startViewDate;
-	}
-
-	public void setStartViewDate(DateTime startViewDate) {
-		this.startViewDate = startViewDate;
-	}
-
-	public DateTime getEndViewDate() {
-		return endViewDate;
-	}
-
-	public void setEndViewDate(DateTime endViewDate) {
-		this.endViewDate = endViewDate;
-	}
-
-	public ToDate getToDate() {
-		return toDate;
-	}
-
 	public void setToDate(ToDate toDate) {
 		this.toDate = toDate;
 	}
 
-	public FromDate getFromDate() {
-		return fromDate;
-	}
-
 	public void setFromDate(FromDate fromDate) {
 		this.fromDate = fromDate;
-	}
-
-	public String getCityId() {
-		return cityId;
-	}
-
-	public void setCityId(String cityId) {
-		this.cityId = cityId;
-	}
-
-	public String getCountryId() {
-		return countryId;
-	}
-
-	public void setCountryId(String countryId) {
-		this.countryId = countryId;
-	}
-
-	public String getTopicId() {
-		return topicId;
 	}
 
 	public void setTopicId(String topicId) {
