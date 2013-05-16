@@ -60,7 +60,6 @@ public class EventRequest {
 	}
 
 	public String getResponseUrl() throws IOException {
-		// SimpleDateFormat viewDateFormat = new SimpleDateFormat("yyyy-mm-dd");
 		StringBuilder url = new StringBuilder();
 		url.append(baseUrl).append(category.getUrl()).append("i_city_id=")
 				.append(cityId).append("&").append("i_county_id=")
