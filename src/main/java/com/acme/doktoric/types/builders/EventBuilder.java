@@ -1,10 +1,10 @@
 package com.acme.doktoric.types.builders;
-import static com.acme.doktoric.types.concrete.FromDate.*;
-import static com.acme.doktoric.types.concrete.ToDate.*;
-import static com.acme.doktoric.types.concrete.EventName.*;
-import static com.acme.doktoric.types.concrete.EventPlace.*;
-import static com.acme.doktoric.types.concrete.EventUrl.*;
-import static com.acme.doktoric.types.concrete.EventDescription.*;
+import static com.acme.doktoric.types.concrete.EventDescription.eventDescription;
+import static com.acme.doktoric.types.concrete.EventName.eventName;
+import static com.acme.doktoric.types.concrete.EventPlace.eventPlace;
+import static com.acme.doktoric.types.concrete.EventUrl.eventUrl;
+import static com.acme.doktoric.types.concrete.FromDate.fromDate;
+import static com.acme.doktoric.types.concrete.ToDate.toDate;
 
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.concrete.EventDescription;
@@ -13,7 +13,7 @@ import com.acme.doktoric.types.concrete.EventPlace;
 import com.acme.doktoric.types.concrete.EventUrl;
 import com.acme.doktoric.types.concrete.FromDate;
 import com.acme.doktoric.types.concrete.ToDate;
-import com.acme.doktoric.types.enums.EventCategory;
+import com.acme.doktoric.types.enums.Category;
 
 public class EventBuilder {
 
@@ -83,7 +83,7 @@ public class EventBuilder {
 		return this;
 	}
 
-	public EventBuilder withEventCategory(EventCategory eventCategory) {
+	public EventBuilder withEventCategory(Category eventCategory) {
 		event.setEventCategory(eventCategory);
 		return this;
 	}

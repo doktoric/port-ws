@@ -7,7 +7,6 @@ import com.acme.doktoric.types.concrete.EventUrl;
 import com.acme.doktoric.types.concrete.FromDate;
 import com.acme.doktoric.types.concrete.ToDate;
 import com.acme.doktoric.types.enums.Category;
-import com.acme.doktoric.types.enums.EventCategory;
 
 public abstract class Event {
 	protected ToDate toDate;
@@ -16,13 +15,13 @@ public abstract class Event {
 	protected EventPlace place;
 	protected EventUrl url;
 	protected EventDescription description;
-	protected EventCategory eventCategory;
+	protected Category eventCategory;
 
-	public EventCategory getEventCategory() {
+	public Category getEventCategory() {
 		return eventCategory;
 	}
 
-	public void setEventCategory(EventCategory eventCategory) {
+	public void setEventCategory(Category eventCategory) {
 		this.eventCategory = eventCategory;
 	}
 

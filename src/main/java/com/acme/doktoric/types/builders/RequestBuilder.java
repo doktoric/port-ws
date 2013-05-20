@@ -8,20 +8,23 @@ import java.util.Date;
 
 import org.joda.time.DateTime;
 
-import com.acme.doktoric.types.base.EventRequest;
 
+import com.acme.doktoric.tags.PortRequest;
+import com.acme.doktoric.types.concrete.FromDate;
+import com.acme.doktoric.types.concrete.ToDate;
 import com.acme.doktoric.types.enums.Category;
+import com.acme.doktoric.types.enums.WebPages;
 
 public class RequestBuilder {
-	private static EventRequest eventRequest;
+	private static PortRequest eventRequest;
 	
-	public RequestBuilder withBaseUrl(String baseUrl) {
-		eventRequest.setBaseUrl(baseUrl);
+	public RequestBuilder withBaseUrl(WebPages baseUrl) {
+		eventRequest.setBaseUrl(baseUrl.getUrl());
 		return this;
 	}
 	
-	public RequestBuilder withToDate(String toDate) {
-		eventRequest.setToDate(toDate(toDate));
+	public RequestBuilder withToDate(ToDate toDate) {
+		eventRequest.setToDate(toDate);
 		return this;
 	}
 
@@ -30,7 +33,12 @@ public class RequestBuilder {
 		return this;
 	}
 
-	public RequestBuilder withFromDate(String fromDate) {
+	public RequestBuilder withFromDate(FromDate fromDate) {
+		eventRequest.setFromDate(fromDate);
+		return this;
+	}
+	
+	public RequestBuilder withFromDate(DateTime fromDate) {
 		eventRequest.setFromDate(fromDate(fromDate));
 		return this;
 	}
@@ -40,17 +48,12 @@ public class RequestBuilder {
 		return this;
 	}
 
-	public RequestBuilder withFromDate(DateTime fromDate) {
-		eventRequest.setFromDate(fromDate(fromDate));
-		return this;
-	}
-
 	public static RequestBuilder create() {
-		eventRequest=new EventRequest();
+		eventRequest=new PortRequest();
 		return new RequestBuilder();
 	}
 
-	public EventRequest build() {
+	public PortRequest build() {
 		return eventRequest;
 	}
 

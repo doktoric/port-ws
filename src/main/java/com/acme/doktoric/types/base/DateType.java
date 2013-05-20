@@ -12,7 +12,7 @@ public abstract class DateType {
 	protected DateTime  date=new DateTime();
 	protected DateTimeFormatter  simpleDateFormat = DateTimeFormat.forPattern("YYYY-MM-dd"); 
 
-	protected DateTime getDate() {
+	public DateTime getDate() {
 		return date;
 	}
 

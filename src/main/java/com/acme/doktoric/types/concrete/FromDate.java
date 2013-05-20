@@ -8,8 +8,9 @@ import org.joda.time.DateTime;
 import com.acme.doktoric.types.base.DateType;
 
 public class FromDate extends DateType {
+
 	
-	public FromDate(String date) throws ParseException {
+	private FromDate(String date) throws ParseException {
 		this.date =  simpleDateFormat.parseDateTime(date);
 	}
 
