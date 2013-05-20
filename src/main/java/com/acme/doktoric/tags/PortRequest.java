@@ -1,9 +1,6 @@
-package com.acme.doktoric.types.base;
+package com.acme.doktoric.tags;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -12,19 +9,20 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import com.acme.doktoric.types.base.DateType;
 import com.acme.doktoric.types.concrete.FromDate;
 import com.acme.doktoric.types.concrete.ToDate;
 import com.acme.doktoric.types.enums.Category;
 
-public class EventRequest {
+public class PortRequest {
 
 	protected String baseUrl;
 	protected Category category;
 	protected DateTime startViewDate = EndDayOfMonth();
 	protected DateTime endViewDate = StartDayOfMonth();
 	DateTimeFormatter formatter = DateTimeFormat.forPattern("YYYY-MM-dd");
-	protected ToDate toDate;
-	protected FromDate fromDate;
+	protected DateType toDate;
+	protected DateType fromDate;
 	protected String cityId = "-1";
 	protected String countryId = "44";
 	protected String countyId = "-1";
