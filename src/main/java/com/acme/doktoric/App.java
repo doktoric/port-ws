@@ -36,7 +36,7 @@ public class App {
 		
 		FestivalResponse festival=festivalResponse(response);
 		System.out.println(url);
-		System.out.println(festival.getElements());
+		//System.out.println(festival.getElements());
 				
 	}
 	

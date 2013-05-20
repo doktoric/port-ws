@@ -20,6 +20,7 @@ public class EventBuilder {
 	private static Event event;
 
 	public static EventBuilder create() {
+		event=new Event();
 		return new EventBuilder();
 	}
 

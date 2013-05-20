@@ -8,7 +8,7 @@ import com.acme.doktoric.types.concrete.FromDate;
 import com.acme.doktoric.types.concrete.ToDate;
 import com.acme.doktoric.types.enums.Category;
 
-public abstract class Event {
+public class Event {
 	protected ToDate toDate;
 	protected FromDate fromDate;
 	protected EventName name;
