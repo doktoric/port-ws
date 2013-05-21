@@ -75,4 +75,14 @@ public class Event {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return "Event [toDate=" + toDate + ", fromDate=" + fromDate + ", name="
+				+ name + ", place=" + place + ", url=" + url + ", description="
+				+ description + ", eventCategory=" + eventCategory + "]";
+	}
+
+	
+	
 }
+
