@@ -12,6 +12,7 @@ import org.jsoup.select.Elements;
 
 import com.acme.doktoric.tags.FestivalResponse;
 import com.acme.doktoric.tags.PortRequest;
+import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
 import com.acme.doktoric.types.concrete.FromDate;
 import com.acme.doktoric.types.concrete.ToDate;
@@ -36,6 +37,9 @@ public class App {
 		
 		FestivalResponse festival=festivalResponse(response);
 		System.out.println(url);
+		for (Event event : festival.getEvents()) {
+			System.out.println(event);
+		}
 		//System.out.println(festival.getElements());
 				
 	}
