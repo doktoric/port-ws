@@ -41,8 +41,11 @@ public class FestivalResponse implements PortResponse {
 		events = new ArrayList<Event>();
 		for (int i = 0; i < elements.size(); i++) {
 			String element = elements.get(i).text();
-			Event event = parse(element);
-			events.add(event);
+			if (!element.trim().equals("H K Sze Cs P Szo V")) {
+				Event event = parse(element);
+				events.add(event);
+			}
+			
 		}
 
 	}
@@ -50,22 +53,57 @@ public class FestivalResponse implements PortResponse {
 	private Event parse(String event) {
 		Event returnEvent = null;
 		try {
-			String parts[] = event.split("-");
-			String name = parts[0].trim();
-			String place = parts[1].trim().split(" ")[0].trim();
-			String fromDate = parts[1].trim().replace(place, "").trim();
-			String toDate = parts[2].trim();
-			fromDate = replaceMonthIntDateString(fromDate);
-			toDate = replaceMonthIntDateString(toDate);
+			returnEvent = simpleEventParser(event).build();
+		} catch (Exception ex) {
+			returnEvent = specialEventParser(event).build();
+		}
 
-			returnEvent = EventBuilder.create()
-					.withEventCategory(Category.FESTIVAL).withEventName(name)
-					.withEventPlace(place).withFromDate(fromDate)
-					.withToDate(toDate).build();
+		return returnEvent;
+	}
+
+	private EventBuilder specialEventParser(String event) {
+		try {
+			String parts[] = event.split(" - ");
+			String name = parts[0].trim();
+			event = event.replace(name + " - ", "");
+			parts = event.split("   ");
+			String place = parts[0].trim();
+			event = event.trim().replace(place, "").trim();
+			parts = event.split("-");
+			String fromDate = parts[0].replace(String.valueOf((char) 160), " ")
+					.trim();
+			String toDate = "";
+			if (parts.length == 2) {
+				toDate = parts[1].replace(String.valueOf((char) 160), " ")
+						.trim();
+				toDate = replaceMonthIntDateString(toDate);
+			} else {
+				toDate = replaceMonthIntDateString(fromDate);
+			}
+			fromDate = replaceMonthIntDateString(fromDate);
+
+			return EventBuilder.create().withEventCategory(Category.FESTIVAL)
+					.withEventName(name).withEventPlace(place)
+					.withFromDate(fromDate).withToDate(toDate);
 		} catch (Exception ex) {
 			System.out.println("BAD__: " + event);
+			return null;
 		}
-		return returnEvent;
+
+	}
+
+	private EventBuilder simpleEventParser(String event) throws Exception {
+		String parts[] = event.split("-");
+		String name = parts[0].trim();
+		String place = parts[1].trim().split(" ")[0].trim();
+		String fromDate = parts[1].trim().replace(place, "").trim();
+		String toDate = parts[2].trim();
+		fromDate = replaceMonthIntDateString(fromDate);
+		toDate = replaceMonthIntDateString(toDate);
+
+		return EventBuilder.create().withEventCategory(Category.FESTIVAL)
+				.withEventName(name).withEventPlace(place)
+				.withFromDate(fromDate).withToDate(toDate);
 	}
 
 	public static String replaceMonthIntDateString(String date) {
