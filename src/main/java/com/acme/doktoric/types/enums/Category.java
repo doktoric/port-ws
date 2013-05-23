@@ -3,7 +3,14 @@ import static com.acme.doktoric.types.concrete.UrlType.*;
 import com.acme.doktoric.types.concrete.UrlType;
 
 public enum Category {
-	FESTIVAL("fe/festival.festival_list?");
+	FESTIVAL("fe/festival.festival_list?"),
+	MOVIES("ci/cinema.list_days?"),
+	THEATER("w/theatre.date_body?"),
+	RESTAURANT("w/exhibition.create_events?"),
+	CHILD("w/child.event_list?"),
+	BOOK("w/event_topic.create_events?"),
+	MUSIC("w/concert.list_days?");
+	
 
 	private UrlType categoryUrl;
 
