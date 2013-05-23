@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.EventBuilder;
@@ -12,13 +14,11 @@ import com.acme.doktoric.types.enums.Category;
 
 public class FestivalResponse implements PortResponse {
 
+	private static final Logger logger = LoggerFactory.getLogger(PortResponse.class);
+
 	private Elements elements;
 	private List<Event> events;
-	public static String[] MONTHS = new String[] { "január", "február",
-			"március", "április", "május", "június", "július", "augusztus",
-			"szeptember", "október", "november", "december" };
-	public static String[] MONTHS_AS_NUMBER = new String[] { "01", "02", "03",
-			"04", "05", "06", "07", "08", "09", "10", "11", "12" };
+
 
 	private FestivalResponse(Elements elements) {
 		this.elements = elements;
@@ -53,9 +53,9 @@ public class FestivalResponse implements PortResponse {
 	private Event parse(String event) {
 		Event returnEvent = null;
 		try {
-			returnEvent = simpleEventParser(event).build();
-		} catch (Exception ex) {
 			returnEvent = specialEventParser(event).build();
+		} catch (Exception ex) {
+			logger.info("dsfsdfsdf");
 		}
 
 		return returnEvent;
@@ -86,7 +86,7 @@ public class FestivalResponse implements PortResponse {
 					.withEventName(name).withEventPlace(place)
 					.withFromDate(fromDate).withToDate(toDate);
 		} catch (Exception ex) {
-			System.out.println("BAD__: " + event);
+			logger.info("BAD__: " + event);
 			return null;
 		}
 
@@ -117,7 +117,7 @@ public class FestivalResponse implements PortResponse {
 				date = date.replace(MONTHS[i], MONTHS_AS_NUMBER[i]);
 			}
 		} catch (Exception ex) {
-			System.out.println(date);
+			logger.info(date);
 		}
 		return date;
 	}

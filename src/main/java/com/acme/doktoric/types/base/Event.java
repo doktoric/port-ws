@@ -77,7 +77,7 @@ public class Event {
 
 	@Override
 	public String toString() {
-		return "Event [toDate=" + toDate + ", fromDate=" + fromDate + ", name="
+		return name.getValue() + ": [toDate=" + toDate + ", fromDate=" + fromDate + ", name="
 				+ name + ", place=" + place + ", url=" + url + ", description="
 				+ description + ", eventCategory=" + eventCategory + "]";
 	}

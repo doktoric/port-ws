@@ -9,9 +9,12 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.acme.doktoric.tags.FestivalResponse;
 import com.acme.doktoric.tags.PortRequest;
+import com.acme.doktoric.tags.PortResponse;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
 import com.acme.doktoric.types.concrete.FromDate;
@@ -25,6 +28,10 @@ import com.acme.doktoric.types.enums.WebPages;
  * 
  */
 public class App {
+	
+	private static final Logger logger = LoggerFactory.getLogger(PortResponse.class);
+
+	
 	public static void main(String[] args) throws IOException {
 		PortRequest eventRequest=RequestBuilder.create()
 				.withBaseUrl(WebPages.PORT)
@@ -38,7 +45,7 @@ public class App {
 		FestivalResponse festival=festivalResponse(response);
 		System.out.println(url);
 		for (Event event : festival.getEvents()) {
-			System.out.println(event);
+			logger.info(event.toString());
 		}
 		//System.out.println(festival.getElements());
 				
