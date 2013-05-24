@@ -47,27 +47,7 @@ public class App {
 		for (Event event : festival.getEvents()) {
 			logger.info(event.toString());
 		}
-		//System.out.println(festival.getElements());
-				
-	}
-	
-//	private static void parseDatePage() throws IOException {
-//		System.out.println("Feszitválok adott dátumra");
-//		String url="http://port.hu/pls/fe/festival.festival_list?i_city_id=-1&i_county_id=-1&i_cntry_id=44&i_topic_id=19&i_selected_date=2013-04-01-2013-04-01&i_view_date=2013-04-01-2013-04-30";
-//	
-//		Document doc = Jsoup.connect(url)
-//				.get();
-//		Elements boxDiv1 = doc.select(".main-container table:nth-child(3) tr.gray");
-//		Elements boxDiv2 = doc.select(".main-container table:nth-child(3) tr.lightgray");
-//		for (int i = 0; i < boxDiv1.size(); i++) {
-//			System.out.println(boxDiv1.get(i).text() );
-//		}
-//		for (int i = 0; i < boxDiv2.size(); i++) {
-//			System.out.println(boxDiv2.get(i).text() );
-//		}
-//		
-//	}
-	
+	}	
 
 	private static void parseMainPage() throws IOException {
 		System.out.println("Kiemeltek");
