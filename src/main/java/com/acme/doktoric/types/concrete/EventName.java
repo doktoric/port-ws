@@ -15,7 +15,7 @@ public class EventName extends StringType {
 	@Override
 	public String getValue() {
 		// TODO Auto-generated method stub
-		return null;
+		return value;
 	}
 	
 	public static EventName eventName(String eventName) {

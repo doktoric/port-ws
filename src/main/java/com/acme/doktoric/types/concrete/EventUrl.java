@@ -15,7 +15,7 @@ public class EventUrl extends StringType{
 	@Override
 	public String getValue() {
 		// TODO Auto-generated method stub
-		return null;
+		return value;
 	}
 
 	public static EventUrl eventUrl(String eventUrl) {

@@ -25,8 +25,6 @@ public class Event {
 		this.eventCategory = eventCategory;
 	}
 
-	
-
 	public ToDate getToDate() {
 		return toDate;
 	}
@@ -77,12 +75,14 @@ public class Event {
 
 	@Override
 	public String toString() {
-		return name.getValue() + ": [toDate=" + toDate + ", fromDate=" + fromDate + ", name="
-				+ name + ", place=" + place + ", url=" + url + ", description="
-				+ description + ", eventCategory=" + eventCategory + "]";
+		String toStringValue = "";
+		toStringValue = name.getValue() 
+						+ "| " + toDate.getDateAsString()
+						+ "| " + fromDate.getDateAsString() 
+						+ "| " + place.getValue() 
+						+ "| " + eventCategory + "";
+
+		return toStringValue;
 	}
 
-	
-	
 }
-
