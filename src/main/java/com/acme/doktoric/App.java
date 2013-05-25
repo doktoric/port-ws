@@ -4,6 +4,7 @@ import static com.acme.doktoric.tags.FestivalResponse.festivalResponse;
 import static com.acme.doktoric.types.concrete.FromDate.fromDate;
 import static com.acme.doktoric.types.concrete.ToDate.toDate;
 import java.io.IOException;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -12,8 +13,9 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.acme.doktoric.exceptions.UnsupportedRequestTypeException;
 import com.acme.doktoric.tags.FestivalResponse;
-import com.acme.doktoric.tags.PortRequest;
+import com.acme.doktoric.tags.SimplePortRequest;
 import com.acme.doktoric.tags.PortResponse;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
@@ -32,20 +34,18 @@ public class App {
 	private static final Logger logger = LoggerFactory.getLogger(PortResponse.class);
 
 	
-	public static void main(String[] args) throws IOException {
-		PortRequest eventRequest=RequestBuilder.create()
+	public static void main(String[] args) throws IOException, UnsupportedRequestTypeException {
+		
+		RequestBuilder builder=RequestBuilder.create()
 				.withBaseUrl(WebPages.PORT)
 				.withCategory(Category.FESTIVAL)
 				.withFromDate(fromDate("2013-04-01"))
-				.withToDate(toDate("2013-04-30"))
-				.build();
-		String url=eventRequest.getResponseUrl();
-		Elements response=eventRequest.getResponseBody(url);
+				.withToDate(toDate("2013-04-30"));
 		
-		FestivalResponse festival=festivalResponse(response);
-		System.out.println(url);
-		for (Event event : festival.getEvents()) {
-			logger.info(event.toString());
+		List<Event> festivals=SimplePortRequest.simplePortRequest(builder).getResponse();
+		
+		for (Event festival : festivals) {
+			logger.info(festival.toString());
 		}
 	}	
 
