@@ -1,60 +1,54 @@
 package com.acme.doktoric.types.builders;
 
-import static com.acme.doktoric.types.concrete.FromDate.*;
-import static com.acme.doktoric.types.concrete.ToDate.*;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import static com.acme.doktoric.types.concrete.FromDate.fromDate;
+import static com.acme.doktoric.types.concrete.ToDate.toDate;
 
 import org.joda.time.DateTime;
 
-
-import com.acme.doktoric.tags.PortRequest;
+import com.acme.doktoric.types.base.DateType;
 import com.acme.doktoric.types.concrete.FromDate;
 import com.acme.doktoric.types.concrete.ToDate;
 import com.acme.doktoric.types.enums.Category;
 import com.acme.doktoric.types.enums.WebPages;
 
 public class RequestBuilder {
-	private static PortRequest eventRequest;
+	public String baseUrl;
+	public Category category;
+	public DateType toDate;
+	public DateType fromDate;
 	
 	public RequestBuilder withBaseUrl(WebPages baseUrl) {
-		eventRequest.setBaseUrl(baseUrl.getUrl());
+		this.baseUrl=baseUrl.getUrl();
 		return this;
 	}
 	
 	public RequestBuilder withToDate(ToDate toDate) {
-		eventRequest.setToDate(toDate);
+		this.toDate=toDate;
 		return this;
 	}
 
 	public RequestBuilder withToDate(DateTime toDate) {
-		eventRequest.setToDate(toDate(toDate));
+		this.toDate=toDate(toDate);
 		return this;
 	}
 
 	public RequestBuilder withFromDate(FromDate fromDate) {
-		eventRequest.setFromDate(fromDate);
+		this.fromDate=fromDate;
 		return this;
 	}
 	
 	public RequestBuilder withFromDate(DateTime fromDate) {
-		eventRequest.setFromDate(fromDate(fromDate));
+		this.fromDate=fromDate(fromDate);
 		return this;
 	}
 
 	public RequestBuilder withCategory(Category category) {
-		eventRequest.setCategory(category);
+		this.category=category;
 		return this;
 	}
 
 	public static RequestBuilder create() {
-		eventRequest=new PortRequest();
 		return new RequestBuilder();
-	}
-
-	public PortRequest build() {
-		return eventRequest;
 	}
 
 }
