@@ -1,5 +1,6 @@
 package com.acme.doktoric.types.base;
 
+import com.acme.doktoric.types.builders.EventBuilder;
 import com.acme.doktoric.types.concrete.EventDescription;
 import com.acme.doktoric.types.concrete.EventName;
 import com.acme.doktoric.types.concrete.EventPlace;
@@ -7,70 +8,54 @@ import com.acme.doktoric.types.concrete.EventUrl;
 import com.acme.doktoric.types.concrete.FromDate;
 import com.acme.doktoric.types.concrete.ToDate;
 import com.acme.doktoric.types.enums.Category;
+import com.google.common.base.Optional;
 
 public class Event {
-	protected ToDate toDate;
-	protected FromDate fromDate;
-	protected EventName name;
-	protected EventPlace place;
-	protected EventUrl url;
-	protected EventDescription description;
-	protected Category eventCategory;
+	private final ToDate toDate;
+	private final FromDate fromDate;
+	private final EventName name;
+	private final EventPlace place;
+	private final Optional<EventUrl> url;
+	private final Optional<EventDescription> description;
+	private final Category eventCategory;
 
+	
+	private Event(EventBuilder builder){
+		this.toDate=builder.toDate;
+		this.fromDate=builder.fromDate;
+		this.name=builder.name;
+		this.place=builder.place;
+		this.url=builder.url;
+		this.description=builder.description;
+		this.eventCategory=builder.eventCategory;
+	}
+	
 	public Category getEventCategory() {
 		return eventCategory;
-	}
-
-	public void setEventCategory(Category eventCategory) {
-		this.eventCategory = eventCategory;
 	}
 
 	public ToDate getToDate() {
 		return toDate;
 	}
 
-	public void setToDate(ToDate toDate) {
-		this.toDate = toDate;
-	}
-
 	public FromDate getFromDate() {
 		return fromDate;
-	}
-
-	public void setFromDate(FromDate fromDate) {
-		this.fromDate = fromDate;
 	}
 
 	public EventName getName() {
 		return name;
 	}
 
-	public void setName(EventName name) {
-		this.name = name;
-	}
-
 	public EventPlace getPlace() {
 		return place;
 	}
 
-	public void setPlace(EventPlace place) {
-		this.place = place;
-	}
-
-	public EventUrl getUrl() {
+	public Optional<EventUrl> getUrl() {
 		return url;
 	}
 
-	public void setUrl(EventUrl url) {
-		this.url = url;
-	}
-
-	public EventDescription getDescription() {
+	public Optional<EventDescription> getDescription() {
 		return description;
-	}
-
-	public void setDescription(EventDescription description) {
-		this.description = description;
 	}
 
 	@Override
@@ -80,9 +65,15 @@ public class Event {
 						+ "| " + toDate.getDateAsString()
 						+ "| " + fromDate.getDateAsString() 
 						+ "| " + place.getValue() 
+						+ "| " + ((url.isPresent()) ? url.get().getValue() : "empty")
+						+ "| " + ((description.isPresent()) ? description.get().getValue() : "empty")		
 						+ "| " + eventCategory + "";
 
 		return toStringValue;
+	}
+	
+	public static Event event(EventBuilder builder){
+		return new Event(builder);
 	}
 
 }
