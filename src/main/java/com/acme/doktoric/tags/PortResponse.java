@@ -1,7 +1,8 @@
 package com.acme.doktoric.tags;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
+
+import com.acme.doktoric.types.base.Event;
 
 public interface PortResponse {
 
@@ -11,6 +12,6 @@ public interface PortResponse {
 	public static String[] MONTHS_AS_NUMBER = new String[] { "01", "02", "03",
 			"04", "05", "06", "07", "08", "09", "10", "11", "12" };
 
-	public void process();
+	public List<Event> process();
 
 }
