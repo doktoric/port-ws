@@ -9,14 +9,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.acme.doktoric.tags.SimplePortRequest;
+import com.acme.doktoric.request.FestivalRequest;
 import com.acme.doktoric.types.builders.RequestBuilder;
 import com.acme.doktoric.types.enums.Category;
 import com.acme.doktoric.types.enums.WebPages;
 
 public class EventRequestTest {
 
-	private SimplePortRequest underTest;
+	private FestivalRequest underTest;
 	private String exceptedUrl = "http://port.hu/pls/fe/festival.festival_list?i_city_id=-1&i_county_id=-1&i_cntry_id=44&i_topic_id=19&i_selected_date=19&i_view_date=2013-04-30-2013-04-01&i_selected_date=2013-04-01-2013-04-30";
 
 	@Before
@@ -26,7 +26,7 @@ public class EventRequestTest {
 				.withCategory(Category.FESTIVAL)
 				.withFromDate(fromDate("2013-04-01"))
 				.withToDate(toDate("2013-05-30"));
-		underTest=SimplePortRequest.simplePortRequest(builder);
+		underTest=FestivalRequest.festivalRequest(builder);
 	}
 
 	@Test
