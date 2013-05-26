@@ -1,4 +1,4 @@
-package com.acme.doktoric.tags;
+package com.acme.doktoric.response;
 
 import static com.acme.doktoric.types.base.Event.event;
 
@@ -65,9 +65,7 @@ public class FestivalResponse extends AbstractResponse {
 		}
 		return event(builder);
 
-	}
-
-	
+	}	
 	
 	public static final FestivalResponse festivalResponse(Elements elements) {
 		return new FestivalResponse(elements);
