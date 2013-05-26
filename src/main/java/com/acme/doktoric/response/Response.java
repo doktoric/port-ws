@@ -1,10 +1,10 @@
-package com.acme.doktoric.tags;
+package com.acme.doktoric.response;
 
 import java.util.List;
 
 import com.acme.doktoric.types.base.Event;
 
-public interface PortResponse {
+public interface Response {
 
 	public static String[] MONTHS = new String[] { "január", "február",
 			"március", "április", "május", "június", "július", "augusztus",
