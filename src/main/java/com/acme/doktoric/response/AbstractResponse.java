@@ -1,11 +1,12 @@
-package com.acme.doktoric.tags;
+package com.acme.doktoric.response;
 
 import java.util.Calendar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractResponse  implements PortResponse {
+
+public abstract class AbstractResponse  implements Response {
 
 	protected static final Logger logger = LoggerFactory.getLogger(AbstractResponse.class);
 	
@@ -23,6 +24,17 @@ public abstract class AbstractResponse  implements PortResponse {
 			logger.info(date);
 		}
 		return date;
+	}
+	
+	protected boolean isParsable(String element){
+		boolean parsable=true;
+		if(element.trim().equals("H K Sze Cs P Szo V")){
+			parsable=false;
+		}
+		if(element.trim().equals("")){
+			parsable=false;
+		}
+		return parsable;
 	}
 
 }
