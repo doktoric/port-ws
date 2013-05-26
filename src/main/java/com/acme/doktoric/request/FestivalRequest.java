@@ -1,6 +1,6 @@
-package com.acme.doktoric.tags;
+package com.acme.doktoric.request;
 
-import static com.acme.doktoric.tags.FestivalResponse.festivalResponse;
+import static com.acme.doktoric.response.FestivalResponse.festivalResponse;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,50 +12,34 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import com.acme.doktoric.exceptions.UnsupportedRequestTypeException;
 import com.acme.doktoric.types.base.DateType;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
-import com.acme.doktoric.types.concrete.FromDate;
-import com.acme.doktoric.types.concrete.ToDate;
 import com.acme.doktoric.types.enums.Category;
 
-public class SimplePortRequest implements PortRequest{
+public class FestivalRequest extends AbstractRequest {
 
 	private final String baseUrl;
 	private final Category category;
-	private final DateTime startViewDate = EndDayOfMonth();
-	private final DateTime endViewDate = StartDayOfMonth();
-	private final DateTimeFormatter formatter = DateTimeFormat.forPattern("YYYY-MM-dd");
 	private final DateType toDate;
 	private final DateType fromDate;
+	private final DateTime startViewDate = EndDayOfMonth();
+	private final DateTime endViewDate = StartDayOfMonth();
+	private final DateTimeFormatter formatter = DateTimeFormat
+			.forPattern("YYYY-MM-dd");
 	private final String cityId = "-1";
 	private final String countryId = "44";
 	private final String countyId = "-1";
 	private final String topicId = "19";
 
-	
-	
-	private SimplePortRequest(RequestBuilder builder) {
-		this.baseUrl=builder.baseUrl;
-		this.category=builder.category;
-		this.fromDate=builder.fromDate;
-		this.toDate=builder.toDate;
+	private FestivalRequest(RequestBuilder builder) {
+		this.baseUrl = builder.baseUrl;
+		this.category = builder.category;
+		this.fromDate = builder.fromDate;
+		this.toDate = builder.toDate;
 	}
 
-	private DateTime StartDayOfMonth() {
-		DateTime actual = null;
-		DateTimeFormatter viewDateFormat = DateTimeFormat.forPattern("YYYY-MM-dd");
-		actual = viewDateFormat.parseDateTime("2013-04-01");
-		return actual;
-	}
-
-	private DateTime EndDayOfMonth() {
-		DateTime actual = null;
-		DateTimeFormatter viewDateFormat = DateTimeFormat.forPattern("YYYY-MM-dd");
-		actual = viewDateFormat.parseDateTime("2013-04-30");
-		return actual;
-	}
+	
 
 	public String getResponseUrl() throws IOException {
 		StringBuilder url = new StringBuilder();
@@ -71,7 +55,7 @@ public class SimplePortRequest implements PortRequest{
 				.append(formatter.print(toDate.getDate()));
 		return url.toString();
 	}
-	
+
 	public Elements getResponseBody() throws IOException {
 		String responseUrl = getResponseUrl();
 		Document doc = Jsoup.connect(responseUrl).get();
@@ -83,27 +67,13 @@ public class SimplePortRequest implements PortRequest{
 		return boxDiv1;
 
 	}
-	
-	public List<Event> getResponse() throws IOException, UnsupportedRequestTypeException {
-		switch(category){
-		case FESTIVAL:
-			return festivalResponse(getResponseBody()).process();
-		case BOOK:
-		case CHILD:
-		case MOVIES:
-		case MUSIC:
-		case RESTAURANT:
-		case THEATER:
-		default:
-			throw new UnsupportedRequestTypeException(category);
-		
-		}
+
+	public List<Event> getResponse() throws IOException {
+		return festivalResponse(getResponseBody()).process();
 	}
 
-	public static SimplePortRequest simplePortRequest(RequestBuilder builder){
-		return new SimplePortRequest(builder);
+	public static FestivalRequest festivalRequest(RequestBuilder builder) {
+		return new FestivalRequest(builder);
 	}
-
-	
 
 }
