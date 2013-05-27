@@ -1,34 +1,32 @@
 package com.acme.doktoric.types.concrete;
 
-import java.text.ParseException;
-import java.util.Date;
-
+import com.acme.doktoric.types.base.DateType;
 import org.joda.time.DateTime;
 
-import com.acme.doktoric.types.base.DateType;
+import java.text.ParseException;
 
 public class FromDate extends DateType {
 
-	
-	private FromDate(String date) throws ParseException {
-		this.date =  simpleDateFormat.parseDateTime(date);
-	}
 
-	public FromDate(DateTime date) {
-		this.date = date;
-	}
+    private FromDate(String date) throws ParseException {
+        this.date = simpleDateFormat.parseDateTime(date);
+    }
 
-	public static final FromDate fromDate(String date) {
-		FromDate fromDate = null;
-		try {
-			fromDate = new FromDate(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return fromDate;
-	}
+    public FromDate(DateTime date) {
+        this.date = date;
+    }
 
-	public static final FromDate fromDate(DateTime date) {
-		return new FromDate(date);
-	}
+    public static final FromDate fromDate(String date) {
+        FromDate fromDate = null;
+        try {
+            fromDate = new FromDate(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return fromDate;
+    }
+
+    public static final FromDate fromDate(DateTime date) {
+        return new FromDate(date);
+    }
 }
