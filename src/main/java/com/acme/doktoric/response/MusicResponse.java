@@ -1,5 +1,9 @@
 package com.acme.doktoric.response;
 
+import com.acme.doktoric.types.base.Event;
+
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Ricsi
@@ -7,5 +11,9 @@ package com.acme.doktoric.response;
  * Time: 22:35
  * To change this template use File | Settings | File Templates.
  */
-public class MusicResponse {
+public class MusicResponse extends AbstractResponse {
+    @Override
+    public List<Event> process() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }
