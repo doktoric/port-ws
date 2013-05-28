@@ -16,10 +16,10 @@ public abstract class AbstractResponse implements Response {
 
     protected String replaceMonthIntDateString(@ThisHadBetterNotBe(value = Property.NULL) String date) {
         date = date.replaceAll("[0-9][0-9]:[0-9][0-9]", "")
-                .replace(".", "")
-                .replace("Egész nap", "")
-                .replace(" ", "-")
-                .trim();
+                   .replace(".", "")
+                   .replace("Egész nap", "")
+                   .replace(" ", "-")
+                   .trim();
         try {
             for (int i = 0; i < MONTHS.length; i++) {
                 if (date.startsWith(MONTHS[i])) {
