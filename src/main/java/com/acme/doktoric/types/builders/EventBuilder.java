@@ -2,6 +2,8 @@ package com.acme.doktoric.types.builders;
 
 import com.acme.doktoric.types.concrete.*;
 import com.acme.doktoric.types.enums.Category;
+import com.github.stokito.gag.annotation.enforceable.ThisHadBetterNotBe;
+import com.github.stokito.gag.enumeration.Property;
 import com.google.common.base.Optional;
 
 import static com.acme.doktoric.types.concrete.EventDescription.eventDescription;
@@ -25,42 +27,42 @@ public class EventBuilder {
         return new EventBuilder();
     }
 
-    public EventBuilder withToDate(ToDate toDate) {
+    public EventBuilder withToDate(@ThisHadBetterNotBe(value = Property.NULL) ToDate toDate) {
         this.toDate = toDate;
         return this;
     }
 
-    public EventBuilder withToDate(String toDate) {
+    public EventBuilder withToDate(@ThisHadBetterNotBe(value = Property.NULL) String toDate) {
         this.toDate = toDate(toDate);
         return this;
     }
 
-    public EventBuilder withFromDate(FromDate fromDate) {
+    public EventBuilder withFromDate(@ThisHadBetterNotBe(value = Property.NULL) FromDate fromDate) {
         this.fromDate = fromDate;
         return this;
     }
 
-    public EventBuilder withFromDate(String fromDate) {
+    public EventBuilder withFromDate(@ThisHadBetterNotBe(value = Property.NULL) String fromDate) {
         this.fromDate = fromDate(fromDate);
         return this;
     }
 
-    public EventBuilder withEventName(EventName eventName) {
+    public EventBuilder withEventName(@ThisHadBetterNotBe(value = Property.NULL) EventName eventName) {
         this.name = eventName;
         return this;
     }
 
-    public EventBuilder withEventName(String eventName) {
+    public EventBuilder withEventName(@ThisHadBetterNotBe(value = Property.NULL) String eventName) {
         this.name = eventName(eventName);
         return this;
     }
 
-    public EventBuilder withEventPlace(EventPlace eventPlace) {
+    public EventBuilder withEventPlace(@ThisHadBetterNotBe(value = Property.NULL) EventPlace eventPlace) {
         this.place = eventPlace;
         return this;
     }
 
-    public EventBuilder withEventPlace(String eventPlace) {
+    public EventBuilder withEventPlace(@ThisHadBetterNotBe(value = Property.NULL) String eventPlace) {
         this.place = eventPlace(eventPlace);
         return this;
     }
@@ -85,7 +87,7 @@ public class EventBuilder {
         return this;
     }
 
-    public EventBuilder withEventCategory(Category eventCategory) {
+    public EventBuilder withEventCategory(@ThisHadBetterNotBe(value = Property.NULL) Category eventCategory) {
         this.eventCategory = eventCategory;
         return this;
     }

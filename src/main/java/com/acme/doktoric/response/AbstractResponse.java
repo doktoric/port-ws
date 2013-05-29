@@ -1,9 +1,6 @@
 package com.acme.doktoric.response;
 
-import com.github.stokito.gag.annotation.enforceable.CantTouchThis;
-import com.github.stokito.gag.annotation.enforceable.ThisHadBetterNotBe;
-import com.github.stokito.gag.enumeration.Property;
-import com.github.stokito.gag.enumeration.Stop;
+import com.github.stokito.gag.annotation.remark.Magic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +11,8 @@ public abstract class AbstractResponse implements Response {
 
     protected static final Logger logger = LoggerFactory.getLogger(AbstractResponse.class);
 
-    protected String replaceMonthIntDateString(@ThisHadBetterNotBe(value = Property.NULL) String date) {
+    @Magic
+    protected String replaceMonthIntDateString(String date) {
         date = date.replaceAll("[0-9][0-9]:[0-9][0-9]", "")
                    .replace(".", "")
                    .replace("Egész nap", "")
