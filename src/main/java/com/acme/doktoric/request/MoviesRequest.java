@@ -13,6 +13,7 @@ import java.util.List;
  * Date: 2013.05.28.
  * Time: 22:32
  * To change this template use File | Settings | File Templates.
+ * sample: http://port.hu/pls/ci/cinema.list_days?i_city_id=3372&i_county_id=1&i_country_id=44&i_dist_id=-1&i_time_intervall=0&i_selected_date=2013-05-25-2013-05-25&i_view_date=2013-05-01-2013-05-31
  */
 public class MoviesRequest extends AbstractRequest {
     @Override

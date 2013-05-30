@@ -13,6 +13,7 @@ import java.util.List;
  * Date: 2013.05.28.
  * Time: 22:33
  * To change this template use File | Settings | File Templates.
+ * example: http://port.hu/pls/w/event_topic.create_events?i_sections=BOdo&i_topic_id=58&i_selected_date=2013-05-31-2013-05-31&i_view_date=2013-05-01-2013-05-31
  */
 public class BookRequest extends AbstractRequest {
     @Override
