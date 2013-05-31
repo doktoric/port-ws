@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+ <g xmlns="http://www.w3.org/2000/svg" id="rowGroup" transform="translate(0, 150)">
+      <rect x="25" y="40" width="310" height="20"  style="fill:rgb(255,255,255);stroke-width:1;stroke:rgb(0,0,0)"/>
+      <rect x="25" y="60" width="310" height="20"  style="fill:rgb(255,255,255);stroke-width:1;stroke:rgb(0,0,0)"/>
+	  <rect x="25" y="80" width="310" height="20"  style="fill:rgb(255,255,255);stroke-width:1;stroke:rgb(0,0,0)"/>
+	  <rect x="25" y="100" width="310" height="20"  style="fill:rgb(255,255,255);stroke-width:1;stroke:rgb(0,0,0)"/>
+	  <line x1="77.5" y1="40" x2="77.5" y2="120"  style="stroke:rgb(0,0,0);stroke-width:1"/>
+	  <line x1="155" y1="40" x2="155" y2="120"  style="stroke:rgb(0,0,0);stroke-width:1"/>
+	  <line x1="232.5" y1="40" x2="232.5" y2="120"  style="stroke:rgb(0,0,0);stroke-width:1"/>
+
+      <text x="30" y="30" font-size="18px" alignment-baseline="middle" text-anchor="middle">
+         <tspan x="30" dy="1.5em" font-weight="bold" fill="crimson" text-anchor="start">Q1</tspan>
+         <tspan x="110">$ 223</tspan>
+         <tspan x="200">$ 195</tspan>
+         <tspan x="300">$ 28</tspan>
+      </text>
+
+      <text x="30" y="32" font-size="18px" alignment-baseline="middle" text-anchor="middle">
+         <tspan x="30" dy="2.5em" font-weight="bold" fill="crimson" text-anchor="start">Q2</tspan>
+         <tspan x="110">$ 183</tspan>
+         <tspan x="200">$ 70</tspan>
+         <tspan x="300">$ 113</tspan>
+      </text>
+
+      <text x="30" y="34" font-size="18px" alignment-baseline="middle" text-anchor="middle">
+         <tspan x="30" dy="3.5em" font-weight="bold" fill="crimson" text-anchor="start">Q3</tspan>
+         <tspan x="110">$ 277</tspan>
+         <tspan x="200">$ 88</tspan>
+         <tspan x="300">$ 189</tspan>
+      </text>
+
+      <text x="30" y="36" font-size="18px" alignment-baseline="middle" text-anchor="middle">
+         <tspan x="30" dy="4.5em" font-weight="bold" fill="crimson" text-anchor="start">Q4</tspan>
+         <tspan x="110">$ 402</tspan>
+         <tspan x="200">$ 133</tspan>
+         <tspan x="300">$ 269</tspan>
+      </text>
+	  <text x="30" y="38" font-size="18px" alignment-baseline="middle" font-weight="bold" fill="crimson" text-anchor="middle">
+         <tspan x="110">Sales</tspan>
+         <tspan x="200">Expenses</tspan>
+         <tspan x="300">Net</tspan>
+      </text>
+   </g>
+</svg>
