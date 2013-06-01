@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.List;
 
-import static com.acme.doktoric.request.ExhibitionRequest.exhibitionRequest;
+import static com.acme.doktoric.request.concrete.ExhibitionRequest.exhibitionRequest;
 import static com.acme.doktoric.types.concrete.FromDate.fromDate;
 import static com.acme.doktoric.types.concrete.ToDate.toDate;
 
