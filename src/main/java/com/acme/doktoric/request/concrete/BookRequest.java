@@ -1,5 +1,6 @@
 package com.acme.doktoric.request.concrete;
 
+import static com.acme.doktoric.response.concrete.BookResponse.bookResponse;
 import com.acme.doktoric.exceptions.UnsupportedRequestTypeException;
 import com.acme.doktoric.request.AbstractRequest;
 import com.acme.doktoric.types.base.DateType;
@@ -13,6 +14,8 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.List;
+
+import static com.acme.doktoric.response.concrete.ExhibitionResponse.exhibitionResponse;
 
 /**
  * Created with IntelliJ IDEA.
@@ -53,7 +56,7 @@ public class BookRequest extends AbstractRequest {
 
     @Override
     public List<Event> getResponse() throws IOException, UnsupportedRequestTypeException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return bookResponse(getResponseBody()).process();
     }
 
     @Override

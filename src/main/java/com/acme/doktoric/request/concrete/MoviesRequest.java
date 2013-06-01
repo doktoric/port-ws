@@ -14,6 +14,9 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.List;
 
+import static com.acme.doktoric.response.concrete.BookResponse.bookResponse;
+import static com.acme.doktoric.response.concrete.MoviesResponse.moviesResponse;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Ricsi
@@ -78,7 +81,7 @@ public class MoviesRequest extends AbstractRequest {
 
     @Override
     public List<Event> getResponse() throws IOException, UnsupportedRequestTypeException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return moviesResponse(getResponseBody()).process();
     }
 
     public static MoviesRequest moviesRequest(RequestBuilder builder) {
