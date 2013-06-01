@@ -1,5 +1,6 @@
-package com.acme.doktoric.request;
+package com.acme.doktoric.request.concrete;
 
+import com.acme.doktoric.request.AbstractRequest;
 import com.acme.doktoric.types.base.DateType;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
@@ -14,7 +15,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.List;
 
-import static com.acme.doktoric.response.FestivalResponse.festivalResponse;
+import static com.acme.doktoric.response.concrete.FestivalResponse.festivalResponse;
 
 public class FestivalRequest extends AbstractRequest {
 
@@ -39,7 +40,7 @@ public class FestivalRequest extends AbstractRequest {
     }
 
 
-    public String getResponseUrl() throws IOException {
+    protected String getResponseUrl() throws IOException {
         StringBuilder url = new StringBuilder();
         url.append(baseUrl).append(category.getUrl()).append("i_city_id=")
                 .append(cityId).append("&").append("i_county_id=")
@@ -54,6 +55,7 @@ public class FestivalRequest extends AbstractRequest {
         return url.toString();
     }
 
+    @Override
     public Elements getResponseBody() throws IOException {
         String responseUrl = getResponseUrl();
         Document doc = Jsoup.connect(responseUrl).get();

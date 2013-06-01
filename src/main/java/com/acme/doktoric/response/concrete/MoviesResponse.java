@@ -1,5 +1,6 @@
-package com.acme.doktoric.response;
+package com.acme.doktoric.response.concrete;
 
+import com.acme.doktoric.response.AbstractResponse;
 import com.acme.doktoric.types.base.Event;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class MoviesResponse extends AbstractResponse {
+
     @Override
     public List<Event> process() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.

@@ -1,5 +1,6 @@
-package com.acme.doktoric.response;
+package com.acme.doktoric.response.concrete;
 
+import com.acme.doktoric.response.AbstractResponse;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.EventBuilder;
 import com.acme.doktoric.types.enums.Category;
@@ -18,7 +19,6 @@ public class ExhibitionResponse extends AbstractResponse {
 
     public ExhibitionResponse(Elements elements) {
         this.elements = elements;
-        process();
     }
 
     public List<Event> process() {
