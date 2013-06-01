@@ -15,7 +15,6 @@ public class FestivalResponse extends AbstractResponse {
 
     private final Elements elements;
 
-
     private FestivalResponse(Elements elements) {
         this.elements = elements;
     }
@@ -31,7 +30,7 @@ public class FestivalResponse extends AbstractResponse {
         return events;
     }
 
-    private Event parse(String event) {
+    protected Event parse(String event) {
         EventBuilder builder = EventBuilder.create();
         try {
             String parts[] = event.split(" - ");

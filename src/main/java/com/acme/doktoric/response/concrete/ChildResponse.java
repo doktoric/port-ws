@@ -2,6 +2,7 @@ package com.acme.doktoric.response.concrete;
 
 import com.acme.doktoric.response.AbstractResponse;
 import com.acme.doktoric.types.base.Event;
+import org.jsoup.select.Elements;
 
 import java.util.List;
 
@@ -14,8 +15,23 @@ import java.util.List;
  */
 public class ChildResponse extends AbstractResponse {
 
+    private final Elements elements;
+
+    private ChildResponse(Elements elements) {
+        this.elements = elements;
+    }
+
     @Override
     public List<Event> process() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public static final ChildResponse childResponse(Elements elements) {
+        return new ChildResponse(elements);
+    }
+
+    @Override
+    protected Event parse(String event) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

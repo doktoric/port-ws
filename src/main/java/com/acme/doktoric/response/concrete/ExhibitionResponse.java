@@ -17,7 +17,7 @@ public class ExhibitionResponse extends AbstractResponse {
 
     private final Elements elements;
 
-    public ExhibitionResponse(Elements elements) {
+    private ExhibitionResponse(Elements elements) {
         this.elements = elements;
     }
 
@@ -47,7 +47,7 @@ public class ExhibitionResponse extends AbstractResponse {
         return events;
     }
 
-    private Event parse(String event) {
+    protected Event parse(String event) {
         event = event.replace(String.valueOf((char) 160), " ");
         EventBuilder builder = EventBuilder.create();
         try {

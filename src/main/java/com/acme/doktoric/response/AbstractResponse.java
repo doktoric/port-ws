@@ -1,15 +1,19 @@
 package com.acme.doktoric.response;
 
+import com.acme.doktoric.types.base.Event;
 import com.github.stokito.gag.annotation.remark.Magic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Calendar;
+import java.util.List;
 
 
 public abstract class AbstractResponse implements Response {
 
     protected static final Logger logger = LoggerFactory.getLogger(AbstractResponse.class);
+
+    protected abstract Event parse(String event);
 
     @Magic
     protected String replaceMonthIntDateString(String date) {
