@@ -4,6 +4,8 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.io.IOException;
+
 public abstract class AbstractRequest implements Request {
 
     protected DateTime StartDayOfMonth() {
@@ -21,5 +23,7 @@ public abstract class AbstractRequest implements Request {
         actual = viewDateFormat.parseDateTime("2013-04-30");
         return actual;
     }
+
+    protected abstract String getResponseUrl() throws IOException;
 
 }
