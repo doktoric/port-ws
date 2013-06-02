@@ -10,13 +10,13 @@ import static com.acme.doktoric.types.concrete.EventDescription.eventDescription
 import static com.acme.doktoric.types.concrete.EventName.eventName;
 import static com.acme.doktoric.types.concrete.EventPlace.eventPlace;
 import static com.acme.doktoric.types.concrete.EventUrl.eventUrl;
-import static com.acme.doktoric.types.concrete.FromDate.fromDate;
-import static com.acme.doktoric.types.concrete.ToDate.toDate;
+import static com.acme.doktoric.types.concrete.EventStartDate.eventStartDate;
+import static com.acme.doktoric.types.concrete.EventEndDate.eventEndDate;
 
 public class EventBuilder {
 
-    public ToDate toDate;
-    public FromDate fromDate;
+    public EventEndDate toDate;
+    public EventStartDate fromDate;
     public EventName name;
     public EventPlace place;
     public Optional<EventUrl> url = Optional.absent();
@@ -27,23 +27,23 @@ public class EventBuilder {
         return new EventBuilder();
     }
 
-    public EventBuilder withToDate(@ThisHadBetterNotBe(value = Property.NULL) ToDate toDate) {
+    public EventBuilder withEndDate(@ThisHadBetterNotBe(value = Property.NULL) EventEndDate toDate) {
         this.toDate = toDate;
         return this;
     }
 
-    public EventBuilder withToDate(@ThisHadBetterNotBe(value = Property.NULL) String toDate) {
-        this.toDate = toDate(toDate);
+    public EventBuilder withEndDate(@ThisHadBetterNotBe(value = Property.NULL) String toDate) {
+        this.toDate = eventEndDate(toDate);
         return this;
     }
 
-    public EventBuilder withFromDate(@ThisHadBetterNotBe(value = Property.NULL) FromDate fromDate) {
+    public EventBuilder withStartDate(@ThisHadBetterNotBe(value = Property.NULL) EventStartDate fromDate) {
         this.fromDate = fromDate;
         return this;
     }
 
-    public EventBuilder withFromDate(@ThisHadBetterNotBe(value = Property.NULL) String fromDate) {
-        this.fromDate = fromDate(fromDate);
+    public EventBuilder  withStartDate(@ThisHadBetterNotBe(value = Property.NULL) String fromDate) {
+        this.fromDate = eventStartDate(fromDate);
         return this;
     }
 

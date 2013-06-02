@@ -1,14 +1,14 @@
 package com.acme.doktoric.types.builders;
 
 import com.acme.doktoric.types.base.DateType;
-import com.acme.doktoric.types.concrete.FromDate;
-import com.acme.doktoric.types.concrete.ToDate;
+import com.acme.doktoric.types.concrete.EventEndDate;
+import com.acme.doktoric.types.concrete.EventStartDate;
 import com.acme.doktoric.types.enums.Category;
 import com.acme.doktoric.types.enums.WebPages;
 import org.joda.time.DateTime;
 
-import static com.acme.doktoric.types.concrete.FromDate.fromDate;
-import static com.acme.doktoric.types.concrete.ToDate.toDate;
+import static com.acme.doktoric.types.concrete.EventStartDate.eventStartDate;
+import static com.acme.doktoric.types.concrete.EventEndDate.eventEndDate;
 
 public class RequestBuilder {
     public String baseUrl;
@@ -21,23 +21,23 @@ public class RequestBuilder {
         return this;
     }
 
-    public RequestBuilder withToDate(ToDate toDate) {
+    public RequestBuilder withToDate(EventEndDate toDate) {
         this.toDate = toDate;
         return this;
     }
 
-    public RequestBuilder withToDate(DateTime toDate) {
-        this.toDate = toDate(toDate);
+    public RequestBuilder withEndDate(DateTime toDate) {
+        this.toDate = eventEndDate(toDate);
         return this;
     }
 
-    public RequestBuilder withFromDate(FromDate fromDate) {
+    public RequestBuilder withFromDate(EventStartDate fromDate) {
         this.fromDate = fromDate;
         return this;
     }
 
-    public RequestBuilder withFromDate(DateTime fromDate) {
-        this.fromDate = fromDate(fromDate);
+    public RequestBuilder withStartDate(DateTime fromDate) {
+        this.fromDate = eventStartDate(fromDate);
         return this;
     }
 
