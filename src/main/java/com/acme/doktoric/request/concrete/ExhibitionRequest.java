@@ -23,10 +23,6 @@ public class ExhibitionRequest extends AbstractRequest {
     private final Category category;
     private final DateType toDate;
     private final DateType fromDate;
-    private final DateTime startViewDate = EndDayOfMonth();
-    private final DateTime endViewDate = StartDayOfMonth();
-    private final DateTimeFormatter formatter = DateTimeFormat
-            .forPattern("YYYY-MM-dd");
     private final String sections = "EXto";
     private final Boolean viewPermanent = false;
 

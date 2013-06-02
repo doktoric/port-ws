@@ -23,13 +23,6 @@ public class FestivalRequest extends AbstractRequest {
     private final Category category;
     private final DateType toDate;
     private final DateType fromDate;
-    private final DateTime startViewDate = EndDayOfMonth();
-    private final DateTime endViewDate = StartDayOfMonth();
-    private final DateTimeFormatter formatter = DateTimeFormat
-            .forPattern("YYYY-MM-dd");
-    private final String cityId = "-1";
-    private final String countryId = "44";
-    private final String countyId = "-1";
     private final String topicId = "19";
 
     private FestivalRequest(RequestBuilder builder) {

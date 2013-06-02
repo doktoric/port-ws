@@ -9,6 +9,8 @@ import com.acme.doktoric.types.enums.Category;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -31,19 +33,14 @@ import static com.acme.doktoric.response.concrete.TheaterResponse.theaterRespons
  * i_selected_date=2013-06-01-2013-06-01&
  * i_view_date=2013-05-01-2013-06-30
  */
+
+//TODO needed
 public class TheaterRequest extends AbstractRequest {
 
     private final String baseUrl;
     private final Category category;
     private final DateType toDate;
     private final DateType fromDate;
-    private final DateTime startViewDate = EndDayOfMonth();
-    private final DateTime endViewDate = StartDayOfMonth();
-    private final DateTimeFormatter formatter = DateTimeFormat
-            .forPattern("YYYY-MM-dd");
-    private final String cityId = "-1";
-    private final String countryId = "44";
-    private final String countyId = "-1";
     private final String topicId = "4";
 
     public TheaterRequest(RequestBuilder builder) {
@@ -55,7 +52,12 @@ public class TheaterRequest extends AbstractRequest {
 
     @Override
     public Elements getResponseBody() throws IOException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        String responseUrl = getResponseUrl();
+        Document doc = Jsoup.connect(responseUrl).get();
+        Elements boxDiv1 = doc
+                .select("");
+
+        return boxDiv1;
     }
 
     @Override

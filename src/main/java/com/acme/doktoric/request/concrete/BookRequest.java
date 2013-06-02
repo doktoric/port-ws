@@ -1,21 +1,19 @@
 package com.acme.doktoric.request.concrete;
 
-import static com.acme.doktoric.response.concrete.BookResponse.bookResponse;
 import com.acme.doktoric.exceptions.UnsupportedRequestTypeException;
 import com.acme.doktoric.request.AbstractRequest;
 import com.acme.doktoric.types.base.DateType;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
 import com.acme.doktoric.types.enums.Category;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.List;
 
-import static com.acme.doktoric.response.concrete.ExhibitionResponse.exhibitionResponse;
+import static com.acme.doktoric.response.concrete.BookResponse.bookResponse;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,11 +33,7 @@ public class BookRequest extends AbstractRequest {
     private final Category category;
     private final DateType toDate;
     private final DateType fromDate;
-    private final DateTime startViewDate = EndDayOfMonth();
-    private final DateTime endViewDate = StartDayOfMonth();
-    private final DateTimeFormatter formatter = DateTimeFormat
-            .forPattern("YYYY-MM-dd");
-    private final String isections = "BOdo";
+    private final String isections = "BOto";
     private final String i_topic_id = "58";
 
     public BookRequest(RequestBuilder builder) {
@@ -51,7 +45,10 @@ public class BookRequest extends AbstractRequest {
 
     @Override
     public Elements getResponseBody() throws IOException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        String responseUrl = getResponseUrl();
+        Document doc = Jsoup.connect(responseUrl).get();
+        Elements boxDiv1 = doc.select(".e_title_box2, .e_org_box2, .e_date2");
+        return boxDiv1;
     }
 
     @Override
@@ -64,7 +61,6 @@ public class BookRequest extends AbstractRequest {
         StringBuilder url = new StringBuilder();
         url.append(baseUrl).append(category.getUrl())
                 .append("i_sections=").append(isections).append("&")
-                .append("i_topic_id=").append(i_topic_id).append("&")
                 .append("i_selected_date=")
                 .append(formatter.print(fromDate.getDate()))
                 .append("-")
@@ -72,7 +68,9 @@ public class BookRequest extends AbstractRequest {
                 .append("i_view_date=")
                 .append(formatter.print(startViewDate))
                 .append("-")
-                .append(formatter.print(endViewDate));
+                .append(formatter.print(endViewDate)).append("&")
+                .append("i_topic_id=").append(i_topic_id)
+        ;
         return url.toString();
     }
 
