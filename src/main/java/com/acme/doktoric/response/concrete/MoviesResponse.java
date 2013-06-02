@@ -30,7 +30,6 @@ public class MoviesResponse extends AbstractResponse {
         return new MoviesResponse(elements);
     }
 
-    @Override
     protected Event parse(String event) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }

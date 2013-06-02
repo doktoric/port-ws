@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.acme.doktoric.types.base.Event.event;
-import static com.acme.doktoric.types.concrete.FromDate.fromDate;
-import static com.acme.doktoric.types.concrete.ToDate.toDate;
+import static com.acme.doktoric.types.concrete.EventStartDate.eventStartDate;
+import static com.acme.doktoric.types.concrete.EventEndDate.eventEndDate;
 
 public class ExhibitionResponse extends AbstractResponse {
 
@@ -65,8 +65,8 @@ public class ExhibitionResponse extends AbstractResponse {
                 todate = replaceMonthIntDateString(fromdate);
             }
             builder.withEventCategory(Category.FESTIVAL).withEventName(name)
-                    .withEventPlace(place).withFromDate(fromDate(fromdate))
-                    .withToDate(toDate(todate));
+                    .withEventPlace(place).withStartDate(eventStartDate(fromdate))
+                    .withEndDate(eventEndDate(todate));
         } catch (Exception ex) {
             logger.info("BAD__: " + event);
         }

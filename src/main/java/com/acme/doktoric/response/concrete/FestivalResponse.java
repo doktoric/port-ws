@@ -54,7 +54,7 @@ public class FestivalResponse extends AbstractResponse {
 
             builder.withEventCategory(Category.FESTIVAL)
                     .withEventName(name).withEventPlace(place)
-                    .withFromDate(fromDate).withToDate(toDate);
+                    .withStartDate(fromDate).withEndDate(toDate);
         } catch (Exception ex) {
             logger.info("BAD__: " + event);
         }

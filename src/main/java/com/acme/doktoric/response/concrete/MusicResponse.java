@@ -30,7 +30,6 @@ public class MusicResponse extends AbstractResponse {
         return new MusicResponse(elements);
     }
 
-    @Override
     protected Event parse(String event) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }

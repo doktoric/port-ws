@@ -26,12 +26,12 @@ public class TheaterResponse extends AbstractResponse {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public static final TheaterResponse theaterResponse(Elements elements) {
-        return new TheaterResponse(elements);
-    }
 
-    @Override
     protected Event parse(String event) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public static final TheaterResponse theaterResponse(Elements elements) {
+        return new TheaterResponse(elements);
     }
 }
