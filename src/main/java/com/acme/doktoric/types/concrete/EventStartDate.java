@@ -16,7 +16,7 @@ public class EventStartDate extends DateType {
         this.date = date;
     }
 
-    public static final EventStartDate fromDate(String date) {
+    public static final EventStartDate eventStartDate(String date) {
         EventStartDate fromDate = null;
         try {
             fromDate = new EventStartDate(date);
@@ -26,7 +26,7 @@ public class EventStartDate extends DateType {
         return fromDate;
     }
 
-    public static final EventStartDate fromDate(DateTime date) {
+    public static final EventStartDate eventStartDate(DateTime date) {
         return new EventStartDate(date);
     }
 }

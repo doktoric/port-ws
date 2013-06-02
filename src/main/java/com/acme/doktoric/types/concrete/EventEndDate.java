@@ -15,7 +15,7 @@ public class EventEndDate extends DateType {
         this.date = date;
     }
 
-    public static final EventEndDate toDate(String date) {
+    public static final EventEndDate eventEndDate(String date) {
         EventEndDate toDate = null;
         try {
             toDate = new EventEndDate(date);
@@ -25,7 +25,7 @@ public class EventEndDate extends DateType {
         return toDate;
     }
 
-    public static final EventEndDate toDate(DateTime date) {
+    public static final EventEndDate eventEndDate(DateTime date) {
         return new EventEndDate(date);
     }
 }
