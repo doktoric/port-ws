@@ -6,8 +6,8 @@ import com.acme.doktoric.types.enums.Category;
 import com.google.common.base.Optional;
 
 public class Event {
-    private final ToDate toDate;
-    private final FromDate fromDate;
+    private final EventEndDate toDate;
+    private final EventStartDate fromDate;
     private final EventName name;
     private final EventPlace place;
     private final Optional<EventUrl> url;
@@ -29,11 +29,11 @@ public class Event {
         return eventCategory;
     }
 
-    public ToDate getToDate() {
+    public EventEndDate getToDate() {
         return toDate;
     }
 
-    public FromDate getFromDate() {
+    public EventStartDate getFromDate() {
         return fromDate;
     }
 
