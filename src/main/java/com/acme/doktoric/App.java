@@ -1,6 +1,7 @@
 package com.acme.doktoric;
 
 import com.acme.doktoric.exceptions.UnsupportedRequestTypeException;
+import com.acme.doktoric.request.concrete.BookRequest;
 import com.acme.doktoric.response.Response;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
@@ -12,9 +13,11 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.List;
 
+import static com.acme.doktoric.request.concrete.BookRequest.bookRequest;
+import static com.acme.doktoric.request.concrete.ChildRequest.childRequest;
 import static com.acme.doktoric.request.concrete.ExhibitionRequest.exhibitionRequest;
-import static com.acme.doktoric.types.concrete.FromDate.fromDate;
-import static com.acme.doktoric.types.concrete.ToDate.toDate;
+import static com.acme.doktoric.types.concrete.EventStartDate.eventStartDate;
+import static com.acme.doktoric.types.concrete.EventEndDate.eventEndDate;
 
 
 /**
@@ -27,19 +30,44 @@ public class App {
 
     public static void main(String[] args) throws IOException, UnsupportedRequestTypeException {
 
-//		RequestBuilder builder=RequestBuilder.create()
-//				.withBaseUrl(WebPages.PORT)
-//				.withCategory(Category.FESTIVAL)
-//				.withFromDate(fromDate("2013-04-01"))
-//				.withToDate(toDate("2013-04-30"));
-//		List<Event> festivals=festivalRequest(builder).getResponse();
+        //getExhibitions();
+        getChild();
+        //getBooks();
+    }
 
-        RequestBuilder builder1 = RequestBuilder.create()
+    private static void getBooks() throws IOException, UnsupportedRequestTypeException {
+        RequestBuilder bookBuilder = RequestBuilder.create()
+                .withBaseUrl(WebPages.PORT)
+                .withCategory(Category.BOOK)
+                .withFromDate(eventStartDate("2013-06-02"))
+                .withToDate(eventEndDate("2013-06-04"));
+        List<Event> books = bookRequest(bookBuilder).getResponse();
+
+        for (Event book : books) {
+            logger.info(book.toString());
+        }
+    }
+
+    private static void getChild() throws IOException, UnsupportedRequestTypeException {
+        RequestBuilder childBuilder = RequestBuilder.create()
+                .withBaseUrl(WebPages.PORT)
+                .withCategory(Category.CHILD)
+                .withFromDate(eventStartDate("2013-06-02"))
+                .withToDate(eventEndDate("2013-06-04"));
+        List<Event> children = childRequest(childBuilder).getResponse();
+
+        for (Event child : children) {
+            logger.info(child.toString());
+        }
+    }
+
+    private static void getExhibitions() throws IOException {
+        RequestBuilder exhibitonBuilder = RequestBuilder.create()
                 .withBaseUrl(WebPages.PORT)
                 .withCategory(Category.EXHIBITION)
-                .withFromDate(fromDate("2013-05-20"))
-                .withToDate(toDate("2013-05-20"));
-        List<Event> exhibitions = exhibitionRequest(builder1).getResponse();
+                .withFromDate(eventStartDate("2013-05-20"))
+                .withToDate(eventEndDate("2013-05-20"));
+        List<Event> exhibitions = exhibitionRequest(exhibitonBuilder).getResponse();
 
         for (Event exhibition : exhibitions) {
             logger.info(exhibition.toString());
