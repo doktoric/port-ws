@@ -13,14 +13,18 @@ public abstract class AbstractResponse implements Response {
 
     protected static final Logger logger = LoggerFactory.getLogger(AbstractResponse.class);
 
-    protected abstract Event parse(String event);
-
     @Magic
     protected String replaceMonthIntDateString(String date) {
-        date = date.replaceAll("[0-9][0-9]:[0-9][0-9]", "")
+        date = date.replace(String.valueOf((char) 160), " ")
+                   .replaceAll("[0-9][0-9]:[0-9][0-9]", "")
+                   .replaceAll("[0-9]:[0-9][0-9]", "")
+                   .trim()
                    .replace(".", "")
+                   .trim()
                    .replace("Egész nap", "")
+                   .trim()
                    .replace(" ", "-")
+                   .replace(" - ", "")
                    .trim();
         try {
             for (int i = 0; i < MONTHS.length; i++) {

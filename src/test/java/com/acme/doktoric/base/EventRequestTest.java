@@ -9,8 +9,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static com.acme.doktoric.types.concrete.FromDate.fromDate;
-import static com.acme.doktoric.types.concrete.ToDate.toDate;
+import static com.acme.doktoric.types.concrete.EventStartDate.eventStartDate;
+import static com.acme.doktoric.types.concrete.EventEndDate.eventEndDate;
 
 public class EventRequestTest {
 
@@ -22,8 +22,8 @@ public class EventRequestTest {
         RequestBuilder builder = RequestBuilder.create()
                 .withBaseUrl(WebPages.PORT)
                 .withCategory(Category.FESTIVAL)
-                .withFromDate(fromDate("2013-04-01"))
-                .withToDate(toDate("2013-05-30"));
+                .withFromDate(eventStartDate("2013-04-01"))
+                .withToDate(eventEndDate("2013-05-30"));
         underTest = FestivalRequest.festivalRequest(builder);
     }
 
