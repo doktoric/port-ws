@@ -2,9 +2,15 @@ package com.acme.doktoric.response.concrete;
 
 import com.acme.doktoric.response.AbstractResponse;
 import com.acme.doktoric.types.base.Event;
+import com.acme.doktoric.types.builders.EventBuilder;
+import com.acme.doktoric.types.enums.Category;
 import org.jsoup.select.Elements;
 
+import org.jsoup.nodes.Element;
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.acme.doktoric.types.base.Event.event;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,14 +29,24 @@ public class MusicResponse extends AbstractResponse {
 
     @Override
     public List<Event> process() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        List<Event> events = new ArrayList<Event>();
+        for (int i = 0; i < elements.size() - 1; i = +2) {
+            events.add(parse((Element) elements.get(i), (Element) elements.get(i + 1)));
+        }
+        return events;
     }
 
     public static final MusicResponse musicResponse(Elements elements) {
         return new MusicResponse(elements);
     }
 
-    protected Event parse(String event) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    protected Event parse(Element first, Element second) {
+        logger.info(first.toString());
+        logger.info(second.toString());
+        EventBuilder builder = EventBuilder.create();
+  //   builder.withEventCategory(Category.FESTIVAL)
+   //             .withEventName(name).withEventPlace(place)
+     //           .withStartDate(fromDate).withEndDate(toDate);
+        return event(builder);
     }
 }
