@@ -1,7 +1,6 @@
 package com.acme.doktoric;
 
 import com.acme.doktoric.exceptions.UnsupportedRequestTypeException;
-import com.acme.doktoric.request.concrete.BookRequest;
 import com.acme.doktoric.response.Response;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
@@ -16,8 +15,9 @@ import java.util.List;
 import static com.acme.doktoric.request.concrete.BookRequest.bookRequest;
 import static com.acme.doktoric.request.concrete.ChildRequest.childRequest;
 import static com.acme.doktoric.request.concrete.ExhibitionRequest.exhibitionRequest;
-import static com.acme.doktoric.types.concrete.EventStartDate.eventStartDate;
+import static com.acme.doktoric.request.concrete.MusicRequest.musicRequest;
 import static com.acme.doktoric.types.concrete.EventEndDate.eventEndDate;
+import static com.acme.doktoric.types.concrete.EventStartDate.eventStartDate;
 
 
 /**
@@ -29,9 +29,9 @@ public class App {
 
 
     public static void main(String[] args) throws IOException, UnsupportedRequestTypeException {
-
+          getMusic();
         //getExhibitions();
-        getChild();
+        //getChild();
         //getBooks();
     }
 
@@ -58,6 +58,19 @@ public class App {
 
         for (Event child : children) {
             logger.info(child.toString());
+        }
+    }
+
+    private static void getMusic() throws IOException, UnsupportedRequestTypeException {
+        RequestBuilder musicBuilder = RequestBuilder.create()
+                .withBaseUrl(WebPages.PORT)
+                .withCategory(Category.MUSIC)
+                .withFromDate(eventStartDate("2013-06-02"))
+                .withToDate(eventEndDate("2013-06-04"));
+        List<Event> musics = musicRequest(musicBuilder).getResponse();
+
+        for (Event music : musics) {
+            logger.info(music.toString());
         }
     }
 
