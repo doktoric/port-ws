@@ -6,9 +6,6 @@ import com.acme.doktoric.types.base.DateType;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
 import com.acme.doktoric.types.enums.Category;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -16,7 +13,6 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.List;
 
-import static com.acme.doktoric.response.concrete.MoviesResponse.moviesResponse;
 import static com.acme.doktoric.response.concrete.MusicResponse.musicResponse;
 
 /**
@@ -52,9 +48,7 @@ public class MusicRequest extends AbstractRequest {
     public Elements getResponseBody() throws IOException {
         String responseUrl = getResponseUrl();
         Document doc = Jsoup.connect(responseUrl).get();
-        Elements boxDiv1 = doc
-                .select("");
-
+        Elements boxDiv1 = doc.select(".main-container").select("table").get(1).select("table");
         return boxDiv1;
     }
 
@@ -67,17 +61,20 @@ public class MusicRequest extends AbstractRequest {
     protected String getResponseUrl() throws IOException {
         StringBuilder url = new StringBuilder();
         url.append(baseUrl).append(category.getUrl())
-                .append("i_city_id=").append(cityId).append("&")
-                .append("i_county_id=").append(countyId).append("&")
-                .append("i_cntry_id=").append(countryId).append("&")
+                .append("i_selected_date=")
+                .append(formatter.print(fromDate.getDate()))
+                .append("-")
+                .append(formatter.print(toDate.getDate())).append("&")
                 .append("i_view_date=")
                 .append(formatter.print(startViewDate))
                 .append("-")
                 .append(formatter.print(endViewDate)).append("&")
-                .append("i_selected_date=")
-                .append(formatter.print(fromDate.getDate()))
-                .append("-")
-                .append(formatter.print(toDate.getDate()));
+                .append("i_city_id=").append(cityId).append("&")
+                .append("i_dist_id=").append("-1").append("&")
+                .append("i_county_id=").append(countyId).append("&")
+                .append("i_cntry_id=").append(countryId).append("&")
+                .append("i_cat_id=").append("&")
+                .append("i_set_id=").append("2");
         return url.toString();
     }
 
