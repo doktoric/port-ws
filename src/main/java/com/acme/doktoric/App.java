@@ -1,6 +1,7 @@
 package com.acme.doktoric;
 
 import com.acme.doktoric.exceptions.UnsupportedRequestTypeException;
+import com.acme.doktoric.request.concrete.MoviesRequest;
 import com.acme.doktoric.response.Response;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
@@ -15,7 +16,9 @@ import java.util.List;
 import static com.acme.doktoric.request.concrete.BookRequest.bookRequest;
 import static com.acme.doktoric.request.concrete.ChildRequest.childRequest;
 import static com.acme.doktoric.request.concrete.ExhibitionRequest.exhibitionRequest;
+import static com.acme.doktoric.request.concrete.MoviesRequest.moviesRequest;
 import static com.acme.doktoric.request.concrete.MusicRequest.musicRequest;
+import static com.acme.doktoric.request.concrete.TheaterRequest.theaterRequest;
 import static com.acme.doktoric.types.concrete.EventEndDate.eventEndDate;
 import static com.acme.doktoric.types.concrete.EventStartDate.eventStartDate;
 
@@ -29,10 +32,32 @@ public class App {
 
 
     public static void main(String[] args) throws IOException, UnsupportedRequestTypeException {
-          getMusic();
+
+
+        getMovies();
+        //getTheaters();
+        //getMusic();
         //getExhibitions();
         //getChild();
         //getBooks();
+    }
+
+    private static void getMovies() throws IOException, UnsupportedRequestTypeException {
+        RequestBuilder moviesBuilder = RequestBuilder.create()
+                .withBaseUrl(WebPages.PORT)
+                .withCategory(Category.MOVIES)
+                .withFromDate(eventStartDate("2013-06-07"))
+                .withToDate(eventEndDate("2013-06-08"));
+        List<Event> movies = moviesRequest(moviesBuilder).getResponse();
+    }
+
+    private static void getTheaters() throws IOException, UnsupportedRequestTypeException {
+        RequestBuilder theaterBuilder = RequestBuilder.create()
+                .withBaseUrl(WebPages.PORT)
+                .withCategory(Category.THEATER)
+                .withFromDate(eventStartDate("2013-06-01"))
+                .withToDate(eventEndDate("2013-06-30"));
+        List<Event> theaters = theaterRequest(theaterBuilder).getResponse();
     }
 
     private static void getBooks() throws IOException, UnsupportedRequestTypeException {
