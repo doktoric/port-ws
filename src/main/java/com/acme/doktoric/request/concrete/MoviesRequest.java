@@ -63,7 +63,7 @@ public class MoviesRequest extends AbstractRequest {
                 .append("i_time_from=").append("0").append("&")
                 .append("i_time_end=").append("2359").append("&")
                 .append("i_page_id=").append("6");
-        System.out.print(url.toString());
+        //System.out.print(url.toString());
         return url.toString();
     }
 
@@ -71,7 +71,7 @@ public class MoviesRequest extends AbstractRequest {
     public Elements getResponseBody() throws IOException {
         String responseUrl = getResponseUrl();
         Document doc = Jsoup.connect(responseUrl).get();
-        Elements boxDiv1 = doc.select(".one_e_box").select("#CI_box").select("table").get(1).select("tr") ;
+        Elements boxDiv1 = doc.select(".one_e_box").select("#CI_box").select("table").get(1).select("td") ;
         return boxDiv1;
     }
 
