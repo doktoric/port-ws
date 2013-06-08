@@ -3,6 +3,9 @@ package com.acme.doktoric.response.concrete;
 import com.acme.doktoric.response.AbstractResponse;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.EventBuilder;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
@@ -20,6 +23,7 @@ import static com.acme.doktoric.types.base.Event.event;
 public class MoviesResponse extends AbstractResponse {
 
     private final Elements elements;
+    private final DateTimeFormatter formatter = DateTimeFormat.forPattern("YYYY-MM-dd HH:mm");
 
     private MoviesResponse(Elements elements) {
         this.elements = elements;
@@ -39,18 +43,34 @@ public class MoviesResponse extends AbstractResponse {
     }
 
     protected Event parse(String eventPlace, String eventDescripton) {
-        eventPlace= eventPlace.replace(String.valueOf((char) 160), " ");
-        eventDescripton= eventDescripton.replace(String.valueOf((char) 160), " ");
+        eventPlace = eventPlace.replace(String.valueOf((char) 160), " ");
+        eventDescripton = eventDescripton.replace(String.valueOf((char) 160), " ");
 
-        EventBuilder builder=EventBuilder.create();
-        builder.withEventName(eventPlace);
-        String[] parts=eventDescripton.split(DAYS);
-        builder.withEventPlace(parts[0]);
-
-
-
-        logger.info(eventPlace);
-        logger.info(eventDescripton);
+        EventBuilder builder = EventBuilder.create();
+        try {
+            builder.withEventName(eventPlace);
+            String[] parts = eventDescripton.split(DAYS);
+            builder.withEventPlace(parts[0]);
+            eventDescripton = eventDescripton.replace(parts[0], "").trim();
+            parts = eventDescripton.split("\\)");
+            String date = getDate(parts[0].replace("(", "").replace(")", "").trim());
+            //System.out.println(parts[1]);
+        } catch (Exception ex) {
+            System.out.println(eventDescripton);
+        }
         return event(builder);
     }
+
+    private String getDate(String monthAndDay) {
+
+        String[] dayAsString = monthAndDay.split(" ");
+        monthAndDay = monthAndDay.replace(dayAsString[0], "");
+        monthAndDay = monthAndDay.replace(DAYS, "").trim();
+        int year = (new DateTime()).getYear();
+        String[] monthAsString = monthAndDay.split(" ");
+        int month = BIG_CAPITAL_MONTHS.indexOf(monthAsString[0]) + 1;
+        String day = monthAsString[1].replace(".", "").trim();
+        return year + "-" + month + "-" + day;
+    }
+
 }
