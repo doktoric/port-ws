@@ -18,6 +18,7 @@ public class TheaterResponse extends AbstractResponse {
     private final Elements elements;
 
     private TheaterResponse(Elements elements) {
+        super();
         this.elements = elements;
     }
 

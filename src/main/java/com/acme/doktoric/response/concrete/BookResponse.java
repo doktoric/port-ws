@@ -24,6 +24,7 @@ public class BookResponse extends AbstractResponse {
     private final Elements elements;
 
     private BookResponse(Elements elements) {
+        super();
         this.elements = elements;
     }
 
@@ -31,12 +32,9 @@ public class BookResponse extends AbstractResponse {
     public List<Event> process() {
         List<Event> events = new ArrayList<Event>();
         for (int i = 0; i < elements.size(); i += 3) {
-            if (isParsable(elements.get(i).text())) {
-                events.add( parse((Element) elements.get(i),
-                                  (Element) elements.get(i + 1),
-                                  (Element) elements.get(i + 2)));
+            if (isParsable(rowProvider.getRow(elements.get(i).text()))) {
+                events.add(parse(elements.get(i), elements.get(i + 1), elements.get(i + 2)));
             }
-
         }
         return events;
     }

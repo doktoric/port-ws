@@ -12,18 +12,12 @@ import java.util.List;
 
 import static com.acme.doktoric.types.base.Event.event;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Ricsi
- * Date: 2013.05.28.
- * Time: 22:35
- * To change this template use File | Settings | File Templates.
- */
 public class MusicResponse extends AbstractResponse {
 
     private final Elements elements;
 
     private MusicResponse(Elements elements) {
+        super();
         this.elements = elements;
     }
 
@@ -31,7 +25,7 @@ public class MusicResponse extends AbstractResponse {
     public List<Event> process() {
         List<Event> events = new ArrayList<Event>();
         for (int i = 0; i < elements.size() - 1; i = +2) {
-            events.add(parse((Element) elements.get(i), (Element) elements.get(i + 1)));
+            events.add(parse(elements.get(i), elements.get(i + 1)));
         }
         return events;
     }

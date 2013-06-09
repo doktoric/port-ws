@@ -4,6 +4,7 @@ import com.acme.doktoric.response.AbstractResponse;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.EventBuilder;
 import com.acme.doktoric.types.enums.Category;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
@@ -16,15 +17,16 @@ public class FestivalResponse extends AbstractResponse {
     private final Elements elements;
 
     private FestivalResponse(Elements elements) {
+        super();
         this.elements = elements;
     }
 
     public List<Event> process() {
         List<Event> events = new ArrayList<Event>();
-        for (int i = 0; i < elements.size(); i++) {
-            String element = elements.get(i).text();
-            if (isParsable(element)) {
-                events.add(parse(element));
+        for (Element element : elements) {
+            String elementText = rowProvider.getRow(element.text());
+            if (isParsable(elementText)) {
+                events.add(parse(elementText));
             }
         }
         return events;

@@ -10,14 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.acme.doktoric.types.base.Event.event;
-import static com.acme.doktoric.types.concrete.EventStartDate.eventStartDate;
 import static com.acme.doktoric.types.concrete.EventEndDate.eventEndDate;
+import static com.acme.doktoric.types.concrete.EventStartDate.eventStartDate;
 
 public class ExhibitionResponse extends AbstractResponse {
 
     private final Elements elements;
 
     private ExhibitionResponse(Elements elements) {
+        super();
         this.elements = elements;
     }
 
@@ -40,7 +41,9 @@ public class ExhibitionResponse extends AbstractResponse {
                 i++;
             } while (!isParsable(date));
             if (isParsable(title) && isParsable(place) && isParsable(date)) {
-                events.add(parse(title + "$" + place + "$" + date));
+                String event = title + "$" + place + "$" + date;
+                event = rowProvider.getRow(event);
+                events.add(parse(event));
             }
             i--;
         }
@@ -48,7 +51,6 @@ public class ExhibitionResponse extends AbstractResponse {
     }
 
     protected Event parse(String event) {
-        event = event.replace(String.valueOf((char) 160), " ");
         EventBuilder builder = EventBuilder.create();
         try {
             String[] parts = event.split("\\$");
