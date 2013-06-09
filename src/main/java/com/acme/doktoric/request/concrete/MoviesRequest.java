@@ -6,12 +6,16 @@ import com.acme.doktoric.types.base.DateType;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
 import com.acme.doktoric.types.enums.Category;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.Map;
 
 import static com.acme.doktoric.response.concrete.MoviesResponse.moviesResponse;
 
@@ -70,7 +74,8 @@ public class MoviesRequest extends AbstractRequest {
     @Override
     public Elements getResponseBody() throws IOException {
         String responseUrl = getResponseUrl();
-        Document doc = Jsoup.connect(responseUrl).get();
+
+        Document doc = Jsoup.connect(responseUrl).timeout(10*1000).get();
         Elements boxDiv1 = doc.select(".one_e_box").select("#CI_box").select("table").get(1).select("td") ;
         return boxDiv1;
     }

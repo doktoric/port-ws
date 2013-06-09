@@ -1,5 +1,7 @@
 package com.acme.doktoric.provider;
 
+import com.google.inject.ImplementedBy;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Ricsi
@@ -7,5 +9,8 @@ package com.acme.doktoric.provider;
  * Time: 12:20
  * To change this template use File | Settings | File Templates.
  */
-public class RowProvider {
+@ImplementedBy(RowProviderImp.class)
+public interface RowProvider {
+    String getRow(String row);
+
 }

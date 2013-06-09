@@ -1,31 +1,38 @@
 package com.acme.doktoric.response;
 
-import com.acme.doktoric.types.base.Event;
+import com.acme.doktoric.provider.RowProvider;
+import com.acme.doktoric.provider.RowProviderImp;
 import com.github.stokito.gag.annotation.remark.Magic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Calendar;
-import java.util.List;
+
+import static com.acme.doktoric.provider.RowProviderImp.rowProvider;
 
 
 public abstract class AbstractResponse implements Response {
 
     protected static final Logger logger = LoggerFactory.getLogger(AbstractResponse.class);
+    protected RowProvider rowProvider;
+
+    public AbstractResponse() {
+        rowProvider = rowProvider();
+    }
 
     @Magic
     protected String replaceMonthIntDateString(String date) {
         date = date.replace(String.valueOf((char) 160), " ")
-                   .replaceAll("[0-9][0-9]:[0-9][0-9]", "")
-                   .replaceAll("[0-9]:[0-9][0-9]", "")
-                   .trim()
-                   .replace(".", "")
-                   .trim()
-                   .replace("Egész nap", "")
-                   .trim()
-                   .replace(" ", "-")
-                   .replace(" - ", "")
-                   .trim();
+                .replaceAll("[0-9][0-9]:[0-9][0-9]", "")
+                .replaceAll("[0-9]:[0-9][0-9]", "")
+                .trim()
+                .replace(".", "")
+                .trim()
+                .replace("Egész nap", "")
+                .trim()
+                .replace(" ", "-")
+                .replace(" - ", "")
+                .trim();
         try {
             for (int i = 0; i < MONTHS.length; i++) {
                 if (date.startsWith(MONTHS[i])) {
