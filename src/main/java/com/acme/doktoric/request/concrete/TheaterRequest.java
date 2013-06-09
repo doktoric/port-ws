@@ -49,7 +49,7 @@ public class TheaterRequest extends AbstractRequest {
     @Override
     public Elements getResponseBody() throws IOException {
         String responseUrl = getResponseUrl();
-        Document doc = Jsoup.connect(responseUrl).get();
+        Document doc = Jsoup.connect(responseUrl).timeout(10*1000).get();
         Elements boxDiv1 = doc.select(".e_box");
         return boxDiv1;
     }

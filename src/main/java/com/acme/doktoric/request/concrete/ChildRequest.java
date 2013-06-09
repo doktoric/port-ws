@@ -71,7 +71,7 @@ public class ChildRequest extends AbstractRequest {
     @Override
     public Elements getResponseBody() throws IOException {
         String responseUrl = getResponseUrl();
-        Document doc = Jsoup.connect(responseUrl).get();
+        Document doc = Jsoup.connect(responseUrl).timeout(10*1000).get();
         Elements boxDiv1 = doc
                 .select(".e_title_box2, .e_org_box2, .e_date2");
 
