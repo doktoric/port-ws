@@ -48,11 +48,11 @@ public class TheaterRequest extends AbstractRequest {
 
     @Override
     public Elements getResponseBody() throws IOException {
-        String responseUrl = getResponseUrl();
-        Document doc = Jsoup.connect(responseUrl).timeout(10*1000).get();
-        Elements boxDiv1 = doc.select(".e_box");
+        Elements boxDiv1 =  getDocument().select(".e_box");
         return boxDiv1;
     }
+
+
 
     @Override
     public List<Event> getResponse() throws IOException, UnsupportedRequestTypeException {

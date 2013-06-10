@@ -46,9 +46,7 @@ public class MusicRequest extends AbstractRequest {
 
     @Override
     public Elements getResponseBody() throws IOException {
-        String responseUrl = getResponseUrl();
-        Document doc = Jsoup.connect(responseUrl).timeout(10*1000).get();
-        Elements boxDiv1 = doc.select(".main-container").select("table").get(1).select("table");
+        Elements boxDiv1 =  getDocument().select(".main-container").select("table").get(1).select("table");
         return boxDiv1;
     }
 

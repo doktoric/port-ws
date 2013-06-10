@@ -5,11 +5,6 @@ import com.acme.doktoric.types.base.DateType;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
 import com.acme.doktoric.types.enums.Category;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -50,12 +45,8 @@ public class FestivalRequest extends AbstractRequest {
 
     @Override
     public Elements getResponseBody() throws IOException {
-        String responseUrl = getResponseUrl();
-        Document doc = Jsoup.connect(responseUrl).timeout(10*1000).get();
-        Elements boxDiv1 = doc
-                .select(".main-container table:nth-child(3) tr.gray");
-        Elements boxDiv2 = doc
-                .select(".main-container table:nth-child(3) tr.lightgray");
+        Elements boxDiv1 = getDocument().select(".main-container table:nth-child(3) tr.gray");
+        Elements boxDiv2 = getDocument().select(".main-container table:nth-child(3) tr.lightgray");
         boxDiv1.addAll(boxDiv2);
         return boxDiv1;
 

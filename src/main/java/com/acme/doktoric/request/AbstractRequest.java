@@ -5,6 +5,8 @@ import com.acme.doktoric.types.enums.Category;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
@@ -19,6 +21,11 @@ public abstract class AbstractRequest implements Request {
 
     protected DateTime StartDayOfMonth() {
         return (new DateTime()).dayOfMonth().withMinimumValue();
+    }
+
+    protected Document getDocument() throws IOException {
+        String responseUrl = getResponseUrl();
+        return Jsoup.connect(responseUrl).timeout(10*1000).get();
     }
 
     protected DateTime EndDayOfMonth() {

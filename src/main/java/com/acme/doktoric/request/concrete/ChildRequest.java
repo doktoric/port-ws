@@ -6,18 +6,12 @@ import com.acme.doktoric.types.base.DateType;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
 import com.acme.doktoric.types.enums.Category;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.List;
 
 import static com.acme.doktoric.response.concrete.ChildResponse.childResponse;
-import static com.acme.doktoric.response.concrete.MoviesResponse.moviesResponse;
 
 /**
  * Created with IntelliJ IDEA.
@@ -61,7 +55,7 @@ public class ChildRequest extends AbstractRequest {
                 .append("i_view_date=")
                 .append(formatter.print(startViewDate))
                 .append("-")
-                .append(formatter.print(endViewDate))   .append("&")
+                .append(formatter.print(endViewDate)).append("&")
                 .append("i_topic_id=").append("25").append("&")
                 .append("i_age_limit_from=").append(",5").append("&")
                 .append("i_age_limit_to=").append("90");
@@ -70,10 +64,7 @@ public class ChildRequest extends AbstractRequest {
 
     @Override
     public Elements getResponseBody() throws IOException {
-        String responseUrl = getResponseUrl();
-        Document doc = Jsoup.connect(responseUrl).timeout(10*1000).get();
-        Elements boxDiv1 = doc
-                .select(".e_title_box2, .e_org_box2, .e_date2");
+        Elements boxDiv1 = getDocument().select(".e_title_box2, .e_org_box2, .e_date2");
 
         return boxDiv1;
     }

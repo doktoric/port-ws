@@ -73,10 +73,7 @@ public class MoviesRequest extends AbstractRequest {
 
     @Override
     public Elements getResponseBody() throws IOException {
-        String responseUrl = getResponseUrl();
-
-        Document doc = Jsoup.connect(responseUrl).timeout(10*1000).get();
-        Elements boxDiv1 = doc.select(".one_e_box").select("#CI_box").select("table").get(1).select("td") ;
+        Elements boxDiv1 =  getDocument().select(".one_e_box").select("#CI_box").select("table").get(1).select("td") ;
         return boxDiv1;
     }
 
