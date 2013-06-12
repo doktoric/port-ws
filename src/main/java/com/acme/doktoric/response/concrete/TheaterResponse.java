@@ -2,9 +2,15 @@ package com.acme.doktoric.response.concrete;
 
 import com.acme.doktoric.response.AbstractResponse;
 import com.acme.doktoric.types.base.Event;
+import com.acme.doktoric.types.builders.EventBuilder;
+import com.acme.doktoric.types.enums.Category;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.acme.doktoric.types.base.Event.event;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,12 +30,18 @@ public class TheaterResponse extends AbstractResponse {
 
     @Override
     public List<Event> process() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        List<Event> events = new ArrayList<Event>();
+        for (int i = 0; i < elements.size() - 1; i = +2) {
+            events.add(parse(elements.get(i)));
+        }
+        return events;
     }
 
-
-    protected Event parse(String event) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    protected Event parse(Element element) {
+        logger.info(element.toString());
+        EventBuilder builder = EventBuilder.create();
+        builder.withEventCategory(Category.THEATER);
+        return event(builder);
     }
 
     public static final TheaterResponse theaterResponse(Elements elements) {

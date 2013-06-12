@@ -4,9 +4,9 @@ import com.acme.doktoric.response.AbstractResponse;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.EventBuilder;
 import com.acme.doktoric.types.enums.Category;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import org.jsoup.nodes.Element;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,9 +38,9 @@ public class MusicResponse extends AbstractResponse {
         logger.info(first.toString());
         logger.info(second.toString());
         EventBuilder builder = EventBuilder.create();
-  //   builder.withEventCategory(Category.FESTIVAL)
-   //             .withEventName(name).withEventPlace(place)
-     //           .withStartDate(fromDate).withEndDate(toDate);
+        builder.withEventCategory(Category.MUSIC) ;
+        //             .withEventName(name).withEventPlace(place)
+        //           .withStartDate(fromDate).withEndDate(toDate);
         return event(builder);
     }
 }

@@ -52,13 +52,10 @@ public class TheaterRequest extends AbstractRequest {
         return boxDiv1;
     }
 
-
-
     @Override
     public List<Event> getResponse() throws IOException, UnsupportedRequestTypeException {
         return theaterResponse(getResponseBody()).process();
     }
-
 
     @Override
     protected String getResponseUrl() throws IOException {
