@@ -11,7 +11,7 @@ public enum Category {
     RESTAURANT("w/exhibition.create_events?"),
     CHILD("w/child.event_list?"),
     BOOK("w/event_topic.create_events?"),
-    MUSIC("w/concert.list_days?"),
+    MUSIC("co/concert.list_days?"),
     EXHIBITION("w/exhibition.create_events?");
 
 

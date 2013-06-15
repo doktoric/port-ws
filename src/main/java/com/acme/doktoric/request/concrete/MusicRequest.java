@@ -46,7 +46,7 @@ public class MusicRequest extends AbstractRequest {
 
     @Override
     public Elements getResponseBody() throws IOException {
-        Elements boxDiv1 =  getDocument().select(".main-container").select("table").get(1).select("table");
+        Elements boxDiv1 =  getDocument().select(".main-container").select("table").get(1).select("td").get(0).select("table");
         return boxDiv1;
     }
 

@@ -27,6 +27,8 @@ public abstract class AbstractResponse implements Response {
                 .replaceAll("[0-9]:[0-9][0-9]", "")
                 .trim()
                 .replace(".", "")
+                .replace("(", "")
+                .replace(")", "")
                 .trim()
                 .replace("Egész nap", "")
                 .trim()
