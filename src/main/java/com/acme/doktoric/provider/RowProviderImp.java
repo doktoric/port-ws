@@ -15,6 +15,7 @@ public class RowProviderImp implements RowProvider {
         row = row.replaceAll(String.valueOf((char) 160), " ");
         row=row.replaceAll("( )+"," ");
         row=row.replaceAll("Egész nap","");
+        row=row.replaceAll("Jegyvásárlás","");
         if(row.equals(" ")){
             row="";
         }

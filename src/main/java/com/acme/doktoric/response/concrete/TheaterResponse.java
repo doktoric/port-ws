@@ -31,17 +31,27 @@ public class TheaterResponse extends AbstractResponse {
     @Override
     public List<Event> process() {
         List<Event> events = new ArrayList<Event>();
-        for (int i = 0; i < elements.size() - 1; i = +2) {
-            events.add(parse(elements.get(i)));
+        for (int i = 1; i < elements.size() - 1; i = i + 2) {
+            events.addAll(parse(elements.get(i), elements.get(i + 1)));
         }
         return events;
     }
 
-    protected Event parse(Element element) {
-        logger.info(element.toString());
+    protected List<Event> parse(Element part1, Element part2) {
+        List<Event> events = new ArrayList<Event>();
         EventBuilder builder = EventBuilder.create();
         builder.withEventCategory(Category.THEATER);
-        return event(builder);
+        builder.withEventName(part1.select(".e_title2,.e_title_box2").text());
+        builder.withEventPlace(part2.select(".e_org_box2").text());
+        Elements dates = part2.select(".e_date2").select("span");
+        for (int i = 0; i < dates.size(); i++) {
+            String date = rowProvider.getRow(dates.get(i).text());
+            date = replaceMonthIntDateString(date);
+            builder.withStartDate(date);
+            builder.withEndDate(date);
+            events.add(event(builder));
+        }
+        return events;
     }
 
     public static final TheaterResponse theaterResponse(Elements elements) {

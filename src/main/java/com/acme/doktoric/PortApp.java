@@ -34,7 +34,7 @@ public class PortApp {
 
     public PortApp()  {
         try {
-            getMusic();
+            getTheaters();
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (UnsupportedRequestTypeException e) {
@@ -59,9 +59,12 @@ public class PortApp {
         RequestBuilder theaterBuilder = RequestBuilder.create()
                 .withBaseUrl(WebPages.PORT)
                 .withCategory(Category.THEATER)
-                .withFromDate(eventStartDate("2013-06-01"))
+                .withFromDate(eventStartDate("2013-06-20"))
                 .withToDate(eventEndDate("2013-06-30"));
         List<Event> theaters = theaterRequest(theaterBuilder).getResponse();
+        for (Event movie : theaters) {
+            logger.info(movie.toString());
+        }
     }
 
     private void getBooks() throws IOException, UnsupportedRequestTypeException {

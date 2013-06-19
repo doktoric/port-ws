@@ -48,7 +48,7 @@ public class TheaterRequest extends AbstractRequest {
 
     @Override
     public Elements getResponseBody() throws IOException {
-        Elements boxDiv1 =  getDocument().select(".e_box");
+        Elements boxDiv1 =   getDocument().select(".e_box").select("tr");
         return boxDiv1;
     }
 
@@ -61,7 +61,7 @@ public class TheaterRequest extends AbstractRequest {
     protected String getResponseUrl() throws IOException {
         StringBuilder url = new StringBuilder();
         url.append(baseUrl).append(category.getUrl())
-                .append("i_sections=").append("THpo").append("&")
+                .append("i_sections=").append("THto").append("&")
                 .append("i_selected_date=").append(formatter.print(fromDate.getDate()))
                 .append("-")
                 .append(formatter.print(toDate.getDate())).append("&")
