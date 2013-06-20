@@ -6,8 +6,6 @@ import com.acme.doktoric.types.base.DateType;
 import com.acme.doktoric.types.base.Event;
 import com.acme.doktoric.types.builders.RequestBuilder;
 import com.acme.doktoric.types.enums.Category;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -48,7 +46,11 @@ public class TheaterRequest extends AbstractRequest {
 
     @Override
     public Elements getResponseBody() throws IOException {
-        Elements boxDiv1 =   getDocument().select(".e_box").select("tr");
+        Elements boxDiv1 = getDocument().select(".e_box").select("[itemtype=http://schema.org/Event]");
+        Elements boxDiv2 = getDocument().select(".e_box").select("[itemtype=http://schema.org/Organization]");
+        Elements boxDiv3 = getDocument().select(".e_box").select(".e_date2").select("span");
+        boxDiv1.addAll(boxDiv2);
+        boxDiv1.addAll(boxDiv3);
         return boxDiv1;
     }
 
